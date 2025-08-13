@@ -44,7 +44,7 @@ body, html, #root { height: 100%; margin: 0; font-family: system-ui, -apple-syst
 .br-hidden { display: none; }
 @media (min-width: 768px) { .br-hidden { display: inline; } }
 
-/* Navbar */
+/* Navbar comment*/
 .nav { position: -webkit-sticky; position: sticky; top: 0; background: rgba(255,255,255,0.9); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border-bottom: 1px solid #e2e8f0; z-index: 20; }
 .nav__inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 10px 16px; }
 .nav__brand img { height: 32px; }
