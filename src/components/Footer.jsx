@@ -19,7 +19,7 @@ const iconFromName = (nameOrLabel) => {
 };
 
 export default function Footer({
-  logo = { src: "", alt: "AMT Systems Engineering" },
+  logo = { src: " ", alt: "AMT Systems Engineering" },
   about,
   columns = [],
   contact = {
