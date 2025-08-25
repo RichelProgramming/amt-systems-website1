@@ -1,12 +1,11 @@
-import React from "react";
-import ServicesGrid from "../components/ServicesGrid";
-import { services } from "../data/SiteData";
+import React from 'react';
+import SocialMedia from '../components/Contact/SocialMedia.components';
+import From from '../components/Contact/Form.components';
 import HomeCard from "../components/HomeCard";
-import WhyChoose from "../components/WhyChoose";
 import { useTranslation } from "react-i18next";
 import LanguageSwitcher from "../components/LanguageSwitcher";
 
-export default function HomePage() {
+const ContactPage = () => {
   const { t } = useTranslation();
   const homeData = {
     title: t("common.heroTitle"),
@@ -14,13 +13,14 @@ export default function HomePage() {
     logo: "/logo192.png",
     alt: t("common.brandAlt"),
     buttonText: t("common.getStarted"),
-    page: t("service.page"),
+    page: t("contact.page"),
   };
-  return(
+  return (
     <div>
       <HomeCard homeData={homeData}/>
-      <ServicesGrid services={services} /> 
-      <WhyChoose />
+      <SocialMedia />
+      <From />
     </div>
   );
 }
+export default ContactPage;

@@ -2,8 +2,9 @@ import globe from '../assets/globe.png';
 import React from 'react';
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from "framer-motion";
+import CustumTextChange from './CustumTextChange';
 
-const HeroSection = () => {
+const HeroSection = ({homeData}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -17,9 +18,9 @@ const HeroSection = () => {
         justifyContent: 'space-evenly',
         px: 4,
         py: 8,
-        background: 'linear-gradient(to right, #0d1b2a, #1b263b)',
+        background: 'linear-gradient(to right,#333366, #0d1b2a)',
         color: '#fff',
-        height: '50vh',
+        height: '70vh',
       }}
     >
       <motion.div
@@ -28,18 +29,26 @@ const HeroSection = () => {
         transition={{ duration: 1.5 }}
         viewport={{ once: true }}
       >
-        <Box sx={{ maxWidth: 500 }}>
+        {
+          homeData.page=="home" ? 
+          <Box sx={{ maxWidth: 500 }}>
           <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
-            Innovative<br />Solutions for<br />Your Business
+            {homeData.title}
           </Typography>
           <Typography variant="body1" sx={{ mb: 3 }}>
-            We offer a complete Web development Service. We have expertise and knolage to deliver digital 
-            solution to clients across a wide range of sectors in Africa.
+            {homeData.description}
           </Typography>
-          <Button variant="contained" color="primary">
-            Get Started
-          </Button>
+          {homeData.buttonText?
+            <Button variant="contained" color="primary">
+              {homeData.buttonText}
+            </Button>
+            : null
+          }
+        </Box> :
+        <Box sx={{ maxWidth: 500 }}>
+          <CustumTextChange/>
         </Box>
+        }
       </motion.div>
 
       {!isMobile && (

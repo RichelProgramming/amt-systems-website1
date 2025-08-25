@@ -9,6 +9,8 @@ import {
 import { motion } from 'framer-motion';
 import s1 from '../assets/service.png'; 
 import Button from '@mui/material/Button';
+import '../App.css';
+
 
 const ProjectsSection = () => {
   const theme = useTheme();
@@ -24,14 +26,18 @@ const ProjectsSection = () => {
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 1.5 }}
         viewport={{ once: true }}
       >
-        <Typography variant="h5" fontWeight="bold" sx={{ color: '#0f387cff', mb: 2, textAlign: 'center' }}>
-          About Us
-        </Typography>
+        <p className='title-text-color' style={{ marginBottom: 20 }}> About Us</p>
       </motion.div>
 
+<motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.5 }}
+        viewport={{ once: true }}
+      >
       <Grid container spacing={4} justifyContent="center"  alignItems="center">
           <Grid item xs={12} sm={6} md={4} >
             <img src={s1} alt="Project" style={{ width: '90%', height: '100%' }} />
@@ -50,6 +56,7 @@ const ProjectsSection = () => {
           </Grid>
        
       </Grid>
+      </motion.div>
     </Box>
   );
 };

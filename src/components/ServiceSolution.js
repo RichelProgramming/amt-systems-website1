@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import s1 from '../assets/service.png';
+import CustumTitle from './CustumTitle';
 
 const highlights = [
   {
@@ -46,8 +47,9 @@ const WhyChooseUs = () => {
         textAlign: 'center',
       }}
     >
+      <CustumTitle title="Why should we consider for your solutions services?" />
       <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 6 }}>
-        Why should we consider <strong style={{ color: '#000' }}>AMT</strong> for your solutions services?
+         <strong style={{ color: '#000' }}>AMT</strong> 
       </Typography>
 
       <Grid container justifyContent="center" spacing={4}>

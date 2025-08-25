@@ -1,17 +1,29 @@
-import React from "react";
+import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { NavBar, Footer } from "./components";
+import { navbarData, footerData } from "./data/SiteData";
 import HomePage from './pages/HomePage';
-import Header from './components/NavBar';
-import Footer from './components/Footer';
+import AvisPage from "./pages/AvisPage";
+import ServicesPage from "./pages/ServicesPage";
+import CursorAnimation from "./components/CustumPointer";
+import ContactPage from "./pages/ContactPage";
+import AboutUs from "./pages/AboutUs";
 
-const App = () => (
-  <BrowserRouter>
-    <Header />
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-    </Routes>
-    <Footer />
-  </BrowserRouter>
-);
+export default function App() {
+  return (
+    <BrowserRouter>
+      <div className="page">
+        <NavBar {...navbarData} />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/aboutus" element={<AboutUs />} />
+          <Route path="/reviews" element={<AvisPage />} />
+        </Routes>
+        <Footer {...footerData} />
+      </div>
+    </BrowserRouter>
+  );
+}
 
-export default App;
