@@ -2,13 +2,16 @@ import React, { useEffect, useMemo, useState } from "react";
 import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import RatingStars from "../components/RatingStars";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const LS_KEY = "amt-reviews";
 
 export default function ReviewsPage() {
+  const { t } = useTranslation();
   const [reviews, setReviews] = useState([]);
-  const [sort, setSort] = useState("new"); // 'new' | 'top'
-  const [filter, setFilter] = useState(0); // 0 = all; 1..5 = exact
+  const [sort, setSort] = useState("new");
+  const [filter, setFilter] = useState(0);
 
   useEffect(() => {
     const saved = localStorage.getItem(LS_KEY);
@@ -42,39 +45,40 @@ export default function ReviewsPage() {
 
   return (
     <main className="reviews-page">
+      <LanguageSwitcher />
       <section className="rp__hero">
-        <h1>Vos avis comptent</h1>
-        <p>Partagez votre expérience avec AMT System Engineering. Merci !</p>
+        <h1>{t("reviews.heroH1")}</h1>
+        <p>{t("reviews.heroP")}</p>
       </section>
 
       <section className="rp__summary">
         <div className="rp__avg">
           <div className="rp__avg-num">{stats.avg}</div>
           <RatingStars value={Math.round(stats.avg)} readOnly size="md" />
-          <div className="rp__count">{stats.count} avis</div>
+          <div className="rp__count">{stats.count} {t("reviews.countSuffix")}</div>
         </div>
         <div className="rp__filters">
-          <label>Filtrer par note:</label>
+          <label>{t("reviews.filterBy")}</label>
           <select value={filter} onChange={(e)=>setFilter(+e.target.value)}>
-            <option value={0}>Toutes</option>
-            {[5,4,3,2,1].map((n)=>(<option key={n} value={n}>{n} étoiles</option>))}
+            <option value={0}>All</option>
+            {[5,4,3,2,1].map((n)=>(<option key={n} value={n}>{n} ★</option>))}
           </select>
-          <label>Trier:</label>
+          <label>{t("reviews.sortBy")}</label>
           <select value={sort} onChange={(e)=>setSort(e.target.value)}>
-            <option value="new">Plus récents</option>
-            <option value="top">Mieux notés</option>
+            <option value="new">{t("reviews.sortNew")}</option>
+            <option value="top">{t("reviews.sortTop")}</option>
           </select>
         </div>
       </section>
 
       <section className="rp__grid">
         <div className="rp__left">
-          <h2>Laisser un avis</h2>
+          <h2>{t("reviews.leaveReview")}</h2>
           <ReviewForm onSubmit={addReview} />
         </div>
         <div className="rp__right">
-          <h2>Tous les avis</h2>
-          {shown.length === 0 && <div className="rp__empty">Aucun avis pour le moment.</div>}
+          <h2>{t("reviews.allReviews")}</h2>
+          {shown.length === 0 && <div className="rp__empty">{t("reviews.empty")}</div>}
           <div className="rp__list">
             {shown.map((r) => (<ReviewCard key={r.id} review={r} />))}
           </div>

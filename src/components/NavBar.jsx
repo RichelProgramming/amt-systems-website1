@@ -1,13 +1,39 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom"; 
+import React, { useState, useMemo } from "react";
+import { NavLink } from "react-router-dom";
 import Dropdown from "./Dropdown";
+import { useTranslation } from "react-i18next";
+
+const LANG_LABELS = {
+  en: "English",
+  fr: "Français",
+};
 
 export default function NavBar({
   logo = { src: "", alt: "AMT Systems Engineering" },
   nav = [],
-  languages = { current: "Français", options: ["English", "Français"], onSelect: () => {} },
+  // props.languages restent optionnels; on privilégie i18n, mais on garde la compat.
+  languages: _languagesProp,
 }) {
+  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
+
+  // langue actuelle + libellé affiché
+  const currentLng = i18n.language?.startsWith("fr") ? "fr" : "en";
+  const currentLabel = LANG_LABELS[currentLng];
+
+  const languageOptions = useMemo(
+    () => ([
+      { code: "en", label: LANG_LABELS.en },
+      { code: "fr", label: LANG_LABELS.fr },
+    ]),
+    []
+  );
+
+  const changeLang = async (code) => {
+    await i18n.changeLanguage(code);
+    localStorage.setItem("lng", code);
+    setOpen(false);
+  };
 
   const RenderLink = ({ item, className = "nav__link", mobile = false }) => {
     const href = item.href || "#";
@@ -54,11 +80,19 @@ export default function NavBar({
             </div>
           ))}
 
-          {/* Sélecteur de langue (simple bouton/démo) */}
+          {/* Sélecteur de langue */}
           <Dropdown
-            label={<span style={{ display: "inline-flex", gap: 6, alignItems: "center" }}>🌐 {languages.current}</span>}
+            label={
+              <span style={{ display: "inline-flex", gap: 6, alignItems: "center" }}>
+                🌐 {currentLabel}
+              </span>
+            }
             align="right"
-            items={languages.options.map((lng) => ({ label: lng, href: "#", onClick: () => languages.onSelect?.(lng) }))}
+            items={languageOptions.map((opt) => ({
+              label: opt.label,
+              href: "#",
+              onClick: () => changeLang(opt.code),
+            }))}
           />
         </nav>
 
@@ -89,14 +123,16 @@ export default function NavBar({
           ))}
 
           <div className="nav__mobile-langs">
-            <div className="nav__mobile-langs-title">Language</div>
-            {languages.options.map((lng) => (
+            <div className="nav__mobile-langs-title">
+              {currentLng === "fr" ? "Langue" : "Language"}
+            </div>
+            {languageOptions.map((opt) => (
               <button
-                key={lng}
-                className={`nav__mobile-lang ${lng === languages.current ? "is-active" : ""}`}
-                onClick={() => languages.onSelect?.(lng)}
+                key={opt.code}
+                className={`nav__mobile-lang ${opt.code === currentLng ? "is-active" : ""}`}
+                onClick={() => changeLang(opt.code)}
               >
-                {lng}
+                {opt.label}
               </button>
             ))}
           </div>

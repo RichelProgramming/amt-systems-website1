@@ -1,7 +1,43 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, TextField, Button, Paper } from "@mui/material";
+import emailjs from "emailjs-com";
+import { useTranslation } from "react-i18next";
 
 const ContactPage = () => {
+  const { t, i18n } = useTranslation();
+  const [lang, setLang] = useState(i18n.language);
+  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+
+  const handleLang = (_e, newLang) => {
+    if (!newLang) return;
+    setLang(newLang);
+    i18n.changeLanguage(newLang);
+    localStorage.setItem("lng", newLang);
+  };
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const sendEmail = async (e) => {
+    e.preventDefault();
+
+    try {
+      await emailjs.send(
+        "YOUR_SERVICE_ID",   
+        "YOUR_TEMPLATE_ID",  
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+        },
+        "YOUR_PUBLIC_KEY"   
+      );
+      alert(t("sentOk"));
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      alert(t("sentError"));
+    }
+  };
+
   return (
     <Box display="flex" flexDirection={{ xs: "column", md: "row" }} justifyContent="center" alignItems="center" gap={4} p={2}>
       {/* Map Section */}
