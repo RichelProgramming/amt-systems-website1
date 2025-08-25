@@ -17,7 +17,6 @@ const ContactPage = () => {
   };
   return (
     <div>
-      <LanguageSwitcher />
       <HomeCard homeData={homeData}/>
       <SocialMedia />
       <From />

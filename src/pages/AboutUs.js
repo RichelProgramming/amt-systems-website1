@@ -18,7 +18,6 @@ const AboutUs = () => {
 
   return (
     <div>
-      <LanguageSwitcher />
       <HomeCard homeData={homeData}/>
       <Aboutus />
       <Team />

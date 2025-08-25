@@ -45,7 +45,6 @@ export default function ReviewsPage() {
 
   return (
     <main className="reviews-page">
-      <LanguageSwitcher />
       <section className="rp__hero">
         <h1>{t("reviews.heroH1")}</h1>
         <p>{t("reviews.heroP")}</p>

@@ -14,7 +14,6 @@ export default function App() {
     <BrowserRouter>
       <div className="page">
         <NavBar {...navbarData} />
-        <CursorAnimation />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/services" element={<ServicesPage />} />

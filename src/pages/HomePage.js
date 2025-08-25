@@ -18,7 +18,6 @@ export default function HomePage() {
   };
   return(
     <div>
-      <LanguageSwitcher />
       <HomeCard homeData={homeData}/>
       <ServicesGrid services={services} /> 
       <WhyChoose />
