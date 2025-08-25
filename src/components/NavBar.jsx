@@ -2,6 +2,7 @@ import React, { useState, useMemo } from "react";
 import { NavLink } from "react-router-dom";
 import Dropdown from "./Dropdown";
 import { useTranslation } from "react-i18next";
+import logoamt from "../assets/logo.png";
 
 const LANG_LABELS = {
   en: "English",
@@ -65,7 +66,7 @@ export default function NavBar({
     <header className="nav">
       <div className="nav__inner">
         <a className="nav__brand" href="/" aria-label={logo.alt}>
-          {logo.src ? <img src={logo.src} alt={logo.alt} /> : <div className="nav__logo-fallback" />}
+          {logo.src ? <img src={logoamt} alt={logo.alt}  width="100px" height="200px"/> : <div className="nav__logo-fallback" />}
         </a>
 
         {/* Desktop nav */}

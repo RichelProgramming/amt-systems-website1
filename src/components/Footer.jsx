@@ -1,6 +1,7 @@
 import React from "react";
 import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import logoamt from "../assets/logo.png";
 
 const iconFromName = (nameOrLabel) => {
   const key = String(nameOrLabel || "").toLowerCase();
@@ -42,7 +43,7 @@ export default function Footer({
         <div>
           <div className="footer__brand">
             {logo?.src ? (
-              <img src={logo.src} alt={logo.alt} />
+              <img src={logoamt} alt={logo.alt} />
             ) : (
               <div className="footer__logo-fallback" />
             )}
