@@ -1,45 +1,94 @@
-import React, { useState } from "react";
-import { Box, TextField, Button, Paper } from "@mui/material";
+import React, { useState, useMemo } from "react";
+import {
+  Box, TextField, Button, Paper, MenuItem, Snackbar, Alert, InputAdornment, FormControl, Select, FormHelperText, Typography, Divider
+} from "@mui/material";
+import { Person, Email as EmailIcon, Phone, Business, Chat } from "@mui/icons-material";
 import emailjs from "emailjs-com";
 import { useTranslation } from "react-i18next";
 
-const ContactPage = () => {
+const SERVICE_ID = "service_0z7kgsq";
+const TEMPLATE_ID = "template_qnh3yys";
+const PUBLIC_KEY  = "8tNSmYir6Fu3QGzng";
+
+export default function ContactPage() {
   const { t, i18n } = useTranslation();
-  const [lang, setLang] = useState(i18n.language);
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({
+    from_name: "",
+    from_email: "",
+    phone: "",
+    company: "",
+    contact_method: "",
+    message: "",
+  });
+  const [loading, setLoading] = useState(false);
+  const [toast, setToast] = useState({ open: false, type: "success", msg: "" });
 
-  const handleLang = (_e, newLang) => {
-    if (!newLang) return;
-    setLang(newLang);
-    i18n.changeLanguage(newLang);
-    localStorage.setItem("lng", newLang);
+  const errors = useMemo(() => {
+    const e = {};
+    if (!formData.from_name.trim()) e.from_name = "Required";
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) e.from_email = "Invalid email";
+    // phone: allow +, digits, spaces, -, parentheses; min 7 digits
+    const digits = formData.phone.replace(/\D/g, "");
+    if (!digits || digits.length < 7) e.phone = "Enter a valid phone";
+    if (!formData.contact_method) e.contact_method = "Choose one";
+    if (!formData.message.trim()) e.message = "Required";
+    return e;
+  }, [formData]);
+
+  const disableSubmit = Object.keys(errors).length > 0 || loading;
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    // simple normalize for phone spacing
+    const v = name === "phone" ? value.replace(/[^\d+()\-\s]/g, "") : value;
+    setFormData((prev) => ({ ...prev, [name]: v }));
   };
-
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const sendEmail = async (e) => {
     e.preventDefault();
+    if (disableSubmit) return;
 
+    setLoading(true);
     try {
       await emailjs.send(
-        "service_6xux7to",   
-        "template_qnh3yys",  
+        SERVICE_ID,
+        TEMPLATE_ID,
         {
-          from_name: formData.name,
-          from_email: formData.email,
+          from_name: formData.from_name,
+          from_email: formData.from_email,
+          phone: formData.phone,
+          company: formData.company,
+          contact_method: formData.contact_method,
           message: formData.message,
         },
-        "8tNSmYir6Fu3QGzng"   
+        PUBLIC_KEY
       );
-      alert(t("sentOk"));
-      setFormData({ name: "", email: "", message: "" });
+      setToast({ open: true, type: "success", msg: t("sentOk") || "Message sent ✅" });
+      setFormData({
+        from_name: "",
+        from_email: "",
+        phone: "",
+        company: "",
+        contact_method: "",
+        message: "",
+      });
     } catch (err) {
-      alert(t("sentError"));
+      console.error("EmailJS error:", err);
+      setToast({ open: true, type: "error", msg: t("sentError") || "Sending failed ❌" });
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <Box display="flex" flexDirection={{ xs: "column", md: "row" }} justifyContent="center" alignItems="center" gap={4} p={2}>
+    <Box
+      display="flex"
+      flexDirection={{ xs: "column", md: "row" }}
+      justifyContent="center"
+      alignItems="center"
+      gap={4}
+      p={2}
+    >
       {/* Map Section */}
       <Paper elevation={3} sx={{ width: { xs: "100%", md: "50%" }, height: 400, overflow: "hidden", borderRadius: 2 }}>
         <iframe
@@ -50,44 +99,185 @@ const ContactPage = () => {
           style={{ border: 0 }}
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4142.038933748019!2d2.3522219!3d48.856614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d87783e885%3A0x8dcbff4d32dd0762!2sFrance!5e0!3m2!1sfr!2sfr!4v1711090703406!5m2!1sfr!2sfr"
           allowFullScreen
-        ></iframe>
+        />
       </Paper>
-      
+
       {/* Contact Form Section */}
-      <Box p={3} width={{ xs: "100%", md: "40%" }} borderRadius={2} bgcolor="transparent">
-        <TextField 
-          fullWidth 
-          placeholder="your Name"
-          margin="normal" 
-          variant="outlined" 
-          style={{border:'1px solid #333366',borderRadius:"5px"}}
-          InputProps={{ style: { color: "#333366" } }}
-        />
-        <TextField 
-          fullWidth 
-          placeholder="Email"
-          margin="normal" 
-          variant="outlined" 
-          style={{border:'1px solid #333366',borderRadius:"5px"}}
-          InputLabelProps={{ style: { color: "white" } }}
-          InputProps={{ style: { color: "#333366" } }}
-        />
+      <Paper
+        component="form"
+        onSubmit={sendEmail}
+        elevation={4}
+        sx={{
+          width: { xs: "100%", md: "40%" },
+          p: 3,
+          borderRadius: 3,
+          bgcolor: "background.paper",
+        }}
+      >
+        <Typography variant="h6" sx={{ mb: 1, color: "#333366", fontWeight: 700 }}>
+          Contact us
+        </Typography>
+        <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
+          We‘ll get back to you as soon as possible.
+        </Typography>
+
         <TextField
           fullWidth
-          placeholder="Message"
+          name="from_name"
+          value={formData.from_name}
+          onChange={handleChange}
+          placeholder="Your Name"
+          margin="normal"
+          variant="outlined"
+          required
+          error={!!errors.from_name}
+          helperText={errors.from_name || " "}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Person />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <TextField
+          fullWidth
+          name="from_email"
+          type="email"
+          value={formData.from_email}
+          onChange={handleChange}
+          placeholder="Email"
+          margin="normal"
+          variant="outlined"
+          required
+          error={!!errors.from_email}
+          helperText={errors.from_email || " "}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <EmailIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <TextField
+          fullWidth
+          name="phone"
+          value={formData.phone}
+          onChange={handleChange}
+          placeholder="Phone number (incl. country code)"
+          margin="normal"
+          variant="outlined"
+          required
+          error={!!errors.phone}
+          helperText={errors.phone || " "}
+          inputProps={{ inputMode: "tel" }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Phone />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <TextField
+          fullWidth
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+          placeholder="Company (optional)"
+          margin="normal"
+          variant="outlined"
+          helperText=" "
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <Business />
+              </InputAdornment>
+            ),
+          }}
+        />
+
+        <FormControl fullWidth margin="normal" required error={!!errors.contact_method}>
+          <Select
+            name="contact_method"
+            value={formData.contact_method}
+            onChange={handleChange}
+            displayEmpty
+            renderValue={(val) => (val ? val : "Preferred contact method")}
+            sx={{ ".MuiSelect-select": { display: "flex", alignItems: "center", gap: 1 } }}
+          >
+            <MenuItem value="">
+              <em>Preferred contact method</em>
+            </MenuItem>
+            <MenuItem value="email">Email</MenuItem>
+            <MenuItem value="phone">Phone</MenuItem>
+            <MenuItem value="whatsapp">WhatsApp</MenuItem>
+          </Select>
+          <FormHelperText>{errors.contact_method || " "}</FormHelperText>
+        </FormControl>
+
+        <TextField
+          fullWidth
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="How can we help?"
           margin="normal"
           variant="outlined"
           multiline
           rows={4}
-          style={{border:'1px solid #333366',borderRadius:"5px"}}
-          InputProps={{ style: { color: "#333366" } }}
+          required
+          error={!!errors.message}
+          helperText={errors.message || " "}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start" sx={{ alignSelf: "flex-start", mt: 1 }}>
+                <Chat />
+              </InputAdornment>
+            ),
+          }}
         />
-        <Button variant="contained" fullWidth sx={{ mt: 2, backgroundColor: "#333366" }}>
-          Send
+
+        <Divider sx={{ my: 2 }} />
+
+        <Button
+          type="submit"
+          disabled={disableSubmit}
+          variant="contained"
+          fullWidth
+          sx={{
+            mt: 1,
+            backgroundColor: "#333366",
+            borderRadius: 2,
+            py: 1.2,
+            textTransform: "none",
+            fontWeight: 700,
+            boxShadow: "0 8px 24px rgba(51, 51, 102, 0.25)",
+            "&:hover": { backgroundColor: "#2b2b66" },
+          }}
+        >
+          {loading ? "Sending..." : "Send message"}
         </Button>
-      </Box>
+      </Paper>
+
+      <Snackbar
+        open={toast.open}
+        autoHideDuration={3500}
+        onClose={() => setToast((s) => ({ ...s, open: false }))}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={() => setToast((s) => ({ ...s, open: false }))}
+          severity={toast.type}
+          sx={{ width: "100%" }}
+        >
+          {toast.msg}
+        </Alert>
+      </Snackbar>
     </Box>
   );
-};
-
-export default ContactPage;
+}
