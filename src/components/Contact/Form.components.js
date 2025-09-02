@@ -22,14 +22,14 @@ const ContactPage = () => {
 
     try {
       await emailjs.send(
-        "YOUR_SERVICE_ID",   
-        "YOUR_TEMPLATE_ID",  
+        "service_6xux7to",   
+        "template_qnh3yys",  
         {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
         },
-        "YOUR_PUBLIC_KEY"   
+        "8tNSmYir6Fu3QGzng"   
       );
       alert(t("sentOk"));
       setFormData({ name: "", email: "", message: "" });

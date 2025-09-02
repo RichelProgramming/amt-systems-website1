@@ -1,39 +1,13 @@
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import Dropdown from "./Dropdown";
-import { useTranslation } from "react-i18next";
-
-const LANG_LABELS = {
-  en: "English",
-  fr: "Français",
-};
+import Dropdown from "./Dropdown";            // pour les sous-menus éventuels
+import LanguageSwitcher from "./LanguageSwitcher"; // toggle EN/FR (blanc)
 
 export default function NavBar({
   logo = { src: "", alt: "AMT Systems Engineering" },
   nav = [],
-  // props.languages restent optionnels; on privilégie i18n, mais on garde la compat.
-  languages: _languagesProp,
 }) {
-  const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
-
-  // langue actuelle + libellé affiché
-  const currentLng = i18n.language?.startsWith("fr") ? "fr" : "en";
-  const currentLabel = LANG_LABELS[currentLng];
-
-  const languageOptions = useMemo(
-    () => ([
-      { code: "en", label: LANG_LABELS.en },
-      { code: "fr", label: LANG_LABELS.fr },
-    ]),
-    []
-  );
-
-  const changeLang = async (code) => {
-    await i18n.changeLanguage(code);
-    localStorage.setItem("lng", code);
-    setOpen(false);
-  };
 
   const RenderLink = ({ item, className = "nav__link", mobile = false }) => {
     const href = item.href || "#";
@@ -51,11 +25,7 @@ export default function NavBar({
       );
     }
     return (
-      <a
-        className={className}
-        href={href}
-        onClick={() => mobile && setOpen(false)}
-      >
+      <a className={className} href={href} onClick={() => mobile && setOpen(false)}>
         {item.label}
       </a>
     );
@@ -80,20 +50,8 @@ export default function NavBar({
             </div>
           ))}
 
-          {/* Sélecteur de langue */}
-          <Dropdown
-            label={
-              <span style={{ display: "inline-flex", gap: 6, alignItems: "center" }}>
-                🌐 {currentLabel}
-              </span>
-            }
-            align="right"
-            items={languageOptions.map((opt) => ({
-              label: opt.label,
-              href: "#",
-              onClick: () => changeLang(opt.code),
-            }))}
-          />
+          {/* Toggle langue (blanc) */}
+          <LanguageSwitcher align="right" size="small" />
         </nav>
 
         {/* Burger mobile */}
@@ -105,6 +63,11 @@ export default function NavBar({
       {/* Mobile menu */}
       {open && (
         <div className="nav__mobile">
+          {/* Toggle langue aussi dispo en mobile */}
+          <div className="nav__mobile-langs" style={{ padding: "8px 16px" }}>
+            <LanguageSwitcher align="left" size="small" />
+          </div>
+
           {nav.map((item, i) => (
             <div key={i} className="nav__mobile-group">
               {item.items ? (
@@ -121,21 +84,6 @@ export default function NavBar({
               )}
             </div>
           ))}
-
-          <div className="nav__mobile-langs">
-            <div className="nav__mobile-langs-title">
-              {currentLng === "fr" ? "Langue" : "Language"}
-            </div>
-            {languageOptions.map((opt) => (
-              <button
-                key={opt.code}
-                className={`nav__mobile-lang ${opt.code === currentLng ? "is-active" : ""}`}
-                onClick={() => changeLang(opt.code)}
-              >
-                {opt.label}
-              </button>
-            ))}
-          </div>
         </div>
       )}
     </header>

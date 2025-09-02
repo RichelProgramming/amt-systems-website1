@@ -3,7 +3,6 @@ import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import RatingStars from "../components/RatingStars";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const LS_KEY = "amt-reviews";
 
@@ -45,7 +44,6 @@ export default function ReviewsPage() {
 
   return (
     <main className="reviews-page">
-      <LanguageSwitcher />
       <section className="rp__hero">
         <h1>{t("reviews.heroH1")}</h1>
         <p>{t("reviews.heroP")}</p>

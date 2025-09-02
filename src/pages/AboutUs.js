@@ -3,7 +3,6 @@ import HomeCard from "../components/HomeCard";
 import Aboutus from '../components/AboutUs/AboutUs';
 import Team from '../components/AboutUs/Team';
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const AboutUs = () => {
   const { t } = useTranslation();
@@ -18,7 +17,6 @@ const AboutUs = () => {
 
   return (
     <div>
-      <LanguageSwitcher />
       <HomeCard homeData={homeData}/>
       <Aboutus />
       <Team />

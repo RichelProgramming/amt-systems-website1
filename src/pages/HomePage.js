@@ -1,13 +1,13 @@
 import React from "react";
 import ServicesGrid from "../components/ServicesGrid";
-import { services } from "../data/SiteData";
 import HomeCard from "../components/HomeCard";
 import WhyChoose from "../components/WhyChoose";
+import { getServices } from "../data/SiteData";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 
 export default function HomePage() {
   const { t } = useTranslation();
+
   const homeData = {
     title: t("common.heroTitle"),
     description: t("common.heroDesc"),
@@ -16,11 +16,18 @@ export default function HomePage() {
     buttonText: t("common.getStarted"),
     page: t("service.page"),
   };
-  return(
+
+  const services = getServices(t).map((s, i) => ({
+    icon: ["🖥️", "📈", "🛍️"][i] ?? "🔹",
+    title: s.title,
+    description: s.desc,  
+    href: s.href ?? "#",
+  }));
+
+  return (
     <div>
-      <LanguageSwitcher />
-      <HomeCard homeData={homeData}/>
-      <ServicesGrid services={services} /> 
+      <HomeCard homeData={homeData} />
+      <ServicesGrid services={services} />
       <WhyChoose />
     </div>
   );
