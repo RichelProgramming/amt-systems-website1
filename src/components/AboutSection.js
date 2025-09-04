@@ -34,7 +34,7 @@ const ProjectsSection = () => {
           </Grid>
           <Grid item xs={12} sm={6} md={4}>
             <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
-              AMT Systems Engineering
+                AMT Systems Engineering
             </Typography>
             <Typography variant="body2" sx={{ mb: 5, maxWidth: 700, mx: 'auto' }}>
               {t('aboutSection.desc')}
