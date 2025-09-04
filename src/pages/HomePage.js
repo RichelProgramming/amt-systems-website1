@@ -26,8 +26,8 @@ export default function HomePage() {
 
   return (
     <div>
-      <HomeCard homeData={homeData} />
-      <ServicesGrid services={services} />
+      <HomeCard homeData={homeData}/>
+      <ServicesGrid services={services} /> 
       <WhyChoose />
     </div>
   );
