@@ -30,7 +30,7 @@ const HeroSection = ({homeData}) => {
         viewport={{ once: true }}
       >
         {
-          homeData.page=="home" ? 
+          homeData.page==="home" ? 
           <Box sx={{ maxWidth: 500 }}>
           <Typography variant="h4" component="h1" fontWeight="bold" gutterBottom>
             {homeData.title}

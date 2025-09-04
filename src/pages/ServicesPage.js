@@ -1,23 +1,21 @@
 import React from "react";
 import ServicesGrid from "../components/ServicesGrid";
-import { services } from "../data/SiteData";
-import HomeCard from "../components/HomeCard";
-import WhyChoose from "../components/WhyChoose";
+import { getServices } from "../data/SiteData";
+import { useTranslation } from "react-i18next";
 
-export default function HomePage() {
-  const homeData = {
-    title: "Innovative Solutions for Your Business",
-    description: "We offer a complete Web development Service. We have expertise and knowledge to deliver digital solutions to clients across a wide range of sectors in Africa.",
-    logo: "/logo192.png",
-    alt: "AMT Systems Engineering",
-    buttonText: "Get Started",
-    page: "service"
-  };
-  return(
+export default function ServicesPage() {
+  const { t } = useTranslation();
+
+  const services = getServices(t).map((s, i) => ({
+    icon: ["🖥️", "📈", "🛍️"][i] ?? "🔹",
+    title: s.title,
+    description: s.desc,
+    href: s.href ?? "#",
+  }));
+
+  return (
     <div>
-      <HomeCard homeData={homeData}/>
-      <ServicesGrid services={services} /> 
-      <WhyChoose />
+      <ServicesGrid services={services} />
     </div>
-  )
+  );
 }

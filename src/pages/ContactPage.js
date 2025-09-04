@@ -3,7 +3,6 @@ import SocialMedia from '../components/Contact/SocialMedia.components';
 import From from '../components/Contact/Form.components';
 import HomeCard from "../components/HomeCard";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const ContactPage = () => {
   const { t } = useTranslation();
