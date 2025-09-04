@@ -1,6 +1,7 @@
-import React, { useState, useMemo } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import {
-  Box, TextField, Button, Paper, MenuItem, Snackbar, Alert, InputAdornment, FormControl, Select, FormHelperText, Typography, Divider
+  Box, TextField, Button, Paper, MenuItem, Snackbar, Alert,
+  InputAdornment, FormControl, Select, FormHelperText, Typography, Divider
 } from "@mui/material";
 import { Person, Email as EmailIcon, Phone, Business, Chat } from "@mui/icons-material";
 import emailjs from "emailjs-com";
@@ -11,7 +12,7 @@ const TEMPLATE_ID = "template_qnh3yys";
 const PUBLIC_KEY  = "8tNSmYir6Fu3QGzng";
 
 export default function ContactPage() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     from_name: "",
     from_email: "",
@@ -23,11 +24,22 @@ export default function ContactPage() {
   const [loading, setLoading] = useState(false);
   const [toast, setToast] = useState({ open: false, type: "success", msg: "" });
 
+  // NEW: show errors only after user tries to submit
+  const [showErrors, setShowErrors] = useState(false);
+
+  // Refs to scroll to the first invalid field after submit
+  const refs = {
+    from_name: useRef(null),
+    from_email: useRef(null),
+    phone: useRef(null),
+    contact_method: useRef(null),
+    message: useRef(null),
+  };
+
   const errors = useMemo(() => {
     const e = {};
     if (!formData.from_name.trim()) e.from_name = "Required";
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) e.from_email = "Invalid email";
-    // phone: allow +, digits, spaces, -, parentheses; min 7 digits
     const digits = formData.phone.replace(/\D/g, "");
     if (!digits || digits.length < 7) e.phone = "Enter a valid phone";
     if (!formData.contact_method) e.contact_method = "Choose one";
@@ -35,19 +47,34 @@ export default function ContactPage() {
     return e;
   }, [formData]);
 
-  const disableSubmit = Object.keys(errors).length > 0 || loading;
-
   const handleChange = (e) => {
     const { name, value } = e.target;
-    // simple normalize for phone spacing
     const v = name === "phone" ? value.replace(/[^\d+()\-\s]/g, "") : value;
     setFormData((prev) => ({ ...prev, [name]: v }));
   };
 
+  const scrollToFirstError = () => {
+    const order = ["from_name", "from_email", "phone", "contact_method", "message"];
+    const first = order.find((key) => errors[key]);
+    if (first && refs[first]?.current) {
+      refs[first].current.scrollIntoView({ behavior: "smooth", block: "center" });
+      refs[first].current.focus();
+    }
+  };
+
   const sendEmail = async (e) => {
     e.preventDefault();
-    if (disableSubmit) return;
 
+    // First time user clicks submit → reveal errors (if any)
+    if (!showErrors) setShowErrors(true);
+
+    // If invalid, stop here and show messages
+    if (Object.keys(errors).length > 0) {
+      scrollToFirstError();
+      return;
+    }
+
+    // Valid → send
     setLoading(true);
     try {
       await emailjs.send(
@@ -72,6 +99,7 @@ export default function ContactPage() {
         contact_method: "",
         message: "",
       });
+      setShowErrors(false); // reset error visibility after successful send
     } catch (err) {
       console.error("EmailJS error:", err);
       setToast({ open: true, type: "error", msg: t("sentError") || "Sending failed ❌" });
@@ -80,15 +108,12 @@ export default function ContactPage() {
     }
   };
 
+  // Helper: show error text only AFTER submit attempt
+  const show = (field) => showErrors && !!errors[field];
+  const help = (field) => (show(field) ? errors[field] : " ");
+
   return (
-    <Box
-      display="flex"
-      flexDirection={{ xs: "column", md: "row" }}
-      justifyContent="center"
-      alignItems="center"
-      gap={4}
-      p={2}
-    >
+    <Box display="flex" flexDirection={{ xs: "column", md: "row" }} justifyContent="center" alignItems="center" gap={4} p={2}>
       {/* Map Section */}
       <Paper elevation={3} sx={{ width: { xs: "100%", md: "50%" }, height: 400, overflow: "hidden", borderRadius: 2 }}>
         <iframe
@@ -107,12 +132,7 @@ export default function ContactPage() {
         component="form"
         onSubmit={sendEmail}
         elevation={4}
-        sx={{
-          width: { xs: "100%", md: "40%" },
-          p: 3,
-          borderRadius: 3,
-          bgcolor: "background.paper",
-        }}
+        sx={{ width: { xs: "100%", md: "40%" }, p: 3, borderRadius: 3, bgcolor: "background.paper" }}
       >
         <Typography variant="h6" sx={{ mb: 1, color: "#333366", fontWeight: 700 }}>
           Contact us
@@ -122,6 +142,7 @@ export default function ContactPage() {
         </Typography>
 
         <TextField
+          inputRef={refs.from_name}
           fullWidth
           name="from_name"
           value={formData.from_name}
@@ -130,8 +151,8 @@ export default function ContactPage() {
           margin="normal"
           variant="outlined"
           required
-          error={!!errors.from_name}
-          helperText={errors.from_name || " "}
+          error={show("from_name")}
+          helperText={help("from_name")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -142,6 +163,7 @@ export default function ContactPage() {
         />
 
         <TextField
+          inputRef={refs.from_email}
           fullWidth
           name="from_email"
           type="email"
@@ -151,8 +173,8 @@ export default function ContactPage() {
           margin="normal"
           variant="outlined"
           required
-          error={!!errors.from_email}
-          helperText={errors.from_email || " "}
+          error={show("from_email")}
+          helperText={help("from_email")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">
@@ -163,6 +185,7 @@ export default function ContactPage() {
         />
 
         <TextField
+          inputRef={refs.phone}
           fullWidth
           name="phone"
           value={formData.phone}
@@ -171,8 +194,8 @@ export default function ContactPage() {
           margin="normal"
           variant="outlined"
           required
-          error={!!errors.phone}
-          helperText={errors.phone || " "}
+          error={show("phone")}
+          helperText={help("phone")}
           inputProps={{ inputMode: "tel" }}
           InputProps={{
             startAdornment: (
@@ -201,7 +224,13 @@ export default function ContactPage() {
           }}
         />
 
-        <FormControl fullWidth margin="normal" required error={!!errors.contact_method}>
+        <FormControl
+          fullWidth
+          margin="normal"
+          required
+          error={show("contact_method")}
+          inputRef={refs.contact_method}
+        >
           <Select
             name="contact_method"
             value={formData.contact_method}
@@ -217,10 +246,11 @@ export default function ContactPage() {
             <MenuItem value="phone">Phone</MenuItem>
             <MenuItem value="whatsapp">WhatsApp</MenuItem>
           </Select>
-          <FormHelperText>{errors.contact_method || " "}</FormHelperText>
+          <FormHelperText>{help("contact_method")}</FormHelperText>
         </FormControl>
 
         <TextField
+          inputRef={refs.message}
           fullWidth
           name="message"
           value={formData.message}
@@ -231,8 +261,8 @@ export default function ContactPage() {
           multiline
           rows={4}
           required
-          error={!!errors.message}
-          helperText={errors.message || " "}
+          error={show("message")}
+          helperText={help("message")}
           InputProps={{
             startAdornment: (
               <InputAdornment position="start" sx={{ alignSelf: "flex-start", mt: 1 }}>
@@ -246,7 +276,7 @@ export default function ContactPage() {
 
         <Button
           type="submit"
-          disabled={disableSubmit}
+          disabled={loading}
           variant="contained"
           fullWidth
           sx={{
