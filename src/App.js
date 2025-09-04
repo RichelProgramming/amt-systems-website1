@@ -8,7 +8,7 @@ import ServicesPage from "./pages/ServicesPage";
 import CursorAnimation from "./components/CustumPointer";
 import ContactPage from "./pages/ContactPage";
 import AboutUs from "./pages/AboutUs";
-
+ 
 export default function App() {
   return (
     <BrowserRouter>

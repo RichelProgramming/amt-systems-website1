@@ -61,7 +61,7 @@ export default function NavBar({
       </a>
     );
   };
-
+ 
   return (
     <header className="nav">
       <div className="nav__inner">
