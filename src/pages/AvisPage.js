@@ -3,7 +3,6 @@ import ReviewForm from "../components/ReviewForm";
 import ReviewCard from "../components/ReviewCard";
 import RatingStars from "../components/RatingStars";
 import { useTranslation } from "react-i18next";
-import LanguageSwitcher from "../components/LanguageSwitcher";
 
 const LS_KEY = "amt-reviews";
 
