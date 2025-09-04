@@ -2,6 +2,7 @@ import React from "react";
 import ServicesGrid from "../components/ServicesGrid";
 import { getServices } from "../data/SiteData";
 import { useTranslation } from "react-i18next";
+import WhyChooseUs from "../components/WhyChoose";
 
 export default function ServicesPage() {
   const { t } = useTranslation();
@@ -16,6 +17,7 @@ export default function ServicesPage() {
   return (
     <div>
       <ServicesGrid services={services} />
+      <WhyChooseUs />
     </div>
   );
 }

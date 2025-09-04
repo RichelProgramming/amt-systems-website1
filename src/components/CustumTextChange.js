@@ -5,10 +5,12 @@ import { AppBar, Toolbar, Button, Typography, Box, Container } from "@mui/materi
 const RotateWords = ({
   text = "we can",
   words = [
-           "innovate your business", 
-           "Update Web developpment", 
-           "Management System info",
-           "Conseil IT and Digital",
+           "Delivery & release", 
+           "Ux-Implementaton", 
+           "Quality Functional ",
+           "Leading my Business",
+           "Customer user journey",
+           "Feecback & Continuous implovement",
         ],
 }) => {
   const [index, setIndex] = useState(0);
@@ -22,11 +24,7 @@ const RotateWords = ({
   }, [words.length]);
 
   return (
-    <div>
-        <Typography variant="h3" component="h3" fontWeight="bold" gutterBottom>
-            {text} 
-         </Typography>
-       
+    <div> 
       <AnimatePresence mode="wait">
         <motion.p
           key={words[index]}
