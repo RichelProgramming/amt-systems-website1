@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Facebook,
-  Instagram,
-  Linkedin,
-  Twitter,
-  Phone,
-  Mail,
-  MapPin,
-} from "lucide-react";
+import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import logoamt from "../assets/logo.png";
 
 const iconFromName = (nameOrLabel) => {
   const key = String(nameOrLabel || "").toLowerCase();
@@ -29,16 +23,18 @@ export default function Footer({
     email: "contact@amtsyseng.com",
   },
   socials = [],
-  languages = { options: ["English", "Français"], onSelect: () => {} },
   year = new Date().getFullYear(),
 }) {
+  const { i18n } = useTranslation();
+  const isFr = i18n.language?.startsWith("fr");
+
   return (
     <footer className="footer">
       <div className="footer__inner">
         <div>
           <div className="footer__brand">
             {logo?.src ? (
-              <img src={logo.src} alt={logo.alt} />
+              <img src={logoamt} alt={logo.alt} />
             ) : (
               <div className="footer__logo-fallback" />
             )}
@@ -82,7 +78,7 @@ export default function Footer({
         ))}
 
         <div>
-          <h4 className="footer__title">Address</h4>
+          <h4 className="footer__title">{isFr ? "Adresse" : "Address"}</h4>
           <ul className="footer__contact">
             <li>
               <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
@@ -101,29 +97,18 @@ export default function Footer({
             </li>
           </ul>
 
-          <div className="footer__langs">
-            {languages.options.map((lng) => (
-              <button
-                key={lng}
-                className="footer__langbtn"
-                onClick={() => languages.onSelect?.(lng)}
-                title={`Switch to ${lng}`}
-              >
-                {lng}
-              </button>
-            ))}
-          </div>
+          {/* ⛔️ plus de sélecteur de langue ici pour éviter le doublon */}
         </div>
       </div>
 
       <div className="footer__bottom">
         <p>
-          ©{year} <strong>AMT System Engineering</strong> is proudly Powered by{" "}
-          <strong>AMT Team</strong>
+          ©{year} <strong>AMT System Engineering</strong>{" "}
+          {isFr ? "propulsé par" : "is proudly Powered by"} <strong>AMT Team</strong>
         </p>
         <div className="footer__legal">
-          <a href="#">Privacy Policy</a>
-          <a href="#">Terms & Conditions</a>
+          <a href="#">{isFr ? "Politique de confidentialité" : "Privacy Policy"}</a>
+          <a href="#">{isFr ? "Conditions générales" : "Terms & Conditions"}</a>
         </div>
       </div>
     </footer>
