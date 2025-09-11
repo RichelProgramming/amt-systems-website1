@@ -52,7 +52,7 @@ const resources = {
             cta: "Learn more",
             },
             aboutUs: {
-            heading: "Why choose AMT Systems-Engineering SARL as your business partner?",
+            heading: "Reasons to choose AMT Systems-Engineering LLC as your partner",
             cards: {
                 deliver_title: "Delivering products",
                 deliver_desc: "Delivering products is important, but excellence means more than fulfilling customers' explicit needs.",
@@ -135,7 +135,7 @@ const resources = {
             cta: "En savoir plus",
             },
             aboutUs: {
-            heading: "Pourquoi choisir AMT Systems-Engineering SARL comme partenaire ?",
+            heading: "Raisons pour lesquelles choisirs AMT Systems-Engineering SARL comme partenaire",
             cards: {
                 deliver_title: "Livraison de produits",
                 deliver_desc: "Livrer des produits est essentiel, mais l’excellence va au-delà des besoins explicites du client.",

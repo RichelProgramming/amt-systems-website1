@@ -1,17 +1,17 @@
 import "../App.css";
 import React, { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { AppBar, Toolbar, Button, Typography, Box, Container } from "@mui/material";
+import { Typography } from "@mui/material";
+
 const RotateWords = ({
-  text = "we can",
   words = [
-           "Delivery & release", 
-           "Ux-Implementaton", 
-           "Quality Functional ",
-           "Leading my Business",
-           "Customer user journey",
-           "Feecback & Continuous implovement",
-        ],
+    "Delivery & release",
+    "Ux-Implementaton",
+    "Quality Functional",
+    "Leading my Business",
+    "Customer user journey",
+    "Feecback & Continuous implovement",
+  ],
 }) => {
   const [index, setIndex] = useState(0);
 
@@ -19,22 +19,37 @@ const RotateWords = ({
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % words.length);
     }, 4000);
-    
+
     return () => clearInterval(interval);
   }, [words.length]);
 
   return (
-    <div> 
+    <div>
       <AnimatePresence mode="wait">
-        <motion.p
+        <motion.div
           key={words[index]}
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 40 }}
           transition={{ duration: 0.5 }}
-        > 
-        <p className="outlined-text"> {words[index]}</p>
-        </motion.p>
+        >
+          <Typography
+            variant="h5"
+            className="outlined-text"
+            sx={{
+              textAlign: "center",
+              fontWeight: "bold",
+              fontSize: {
+                xs: "1.5rem",
+                sm: "1.6rem", 
+                md: "4rem",
+                lg: "5rem",
+              },
+            }}
+          >
+            {words[index]}
+          </Typography>
+        </motion.div>
       </AnimatePresence>
     </div>
   );

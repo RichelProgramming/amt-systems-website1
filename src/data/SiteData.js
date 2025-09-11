@@ -18,7 +18,7 @@ export const getFooterData = (t) => ({
     t("common.heroDesc"),
   columns: [
     {
-      title: "Web & Mobile App", // tu peux aussi créer des clés i18n si tu veux tout traduire
+      title: "Web & Mobile App",
       links: [
         { label: "Website Creation" },
         { label: "Custom website Development" },

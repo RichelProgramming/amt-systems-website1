@@ -3,7 +3,7 @@ import ServicesGrid from "../components/ServicesGrid";
 import HomeCard from "../components/HomeCard";
 import AboutSection from '../components/AboutSection';
 import FloatingActionButton from '../components/FloatingActionButton';
-import RecentsProjet from '../components/RecentsProjet';
+// import RecentsProjet from '../components/RecentsProjet';
 import ServiceSolution from '../components/ServiceSolution';
 
 import WhyChoose from "../components/WhyChoose";
@@ -33,7 +33,7 @@ export default function HomePage() {
     <div>
       <HomeCard homeData={homeData}/>
       <AboutSection />
-      <RecentsProjet />
+      {/* <RecentsProjet /> */}
       <ServiceSolution />
     </div>
   );

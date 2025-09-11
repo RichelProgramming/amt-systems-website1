@@ -75,5 +75,5 @@ const HeroSection = ({homeData}) => {
 export default HeroSection;
 
 
-        <img src={globe} className="App-logo" alt="logo" />
+<img src={globe} className="App-logo" alt="logo" />
       

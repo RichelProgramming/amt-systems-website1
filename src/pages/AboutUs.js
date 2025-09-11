@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeCard from "../components/HomeCard";
 import Aboutus from '../components/AboutUs/AboutUs';
-import Team from '../components/AboutUs/Team';
+// import Team from '../components/AboutUs/Team';
 import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
@@ -19,7 +19,7 @@ const AboutUs = () => {
     <div>
       <HomeCard homeData={homeData}/>
       <Aboutus />
-      <Team />
+      {/* <Team /> */}
     </div>
   );
 }

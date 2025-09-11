@@ -47,10 +47,10 @@ const WhyChooseUs = () => {
         textAlign: 'center',
       }}
     >
-      <CustumTitle title="Why should we consider for your solutions services?" />
-      <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 6 }}>
+      <CustumTitle title="Reasons to consider AMT for your solutions services" />
+      {/* <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 6 }}>
          <strong style={{ color: '#000' }}>AMT</strong> 
-      </Typography>
+      </Typography> */}
 
       <Grid container justifyContent="center" spacing={4}>
         {highlights.map((item, index) => (
