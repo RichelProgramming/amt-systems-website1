@@ -19,7 +19,7 @@ export default function HomePage() {
     logo: "/logo192.png",
     alt: t("common.brandAlt"),
     buttonText: t("common.getStarted"),
-    page: t("service.page"),
+    page: 'home',
   };
 
   const services = getServices(t).map((s, i) => ({

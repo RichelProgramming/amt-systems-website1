@@ -52,8 +52,7 @@ const HexagonalDesign = () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    minHeight: '100vh',
-    backgroundColor: 'white',
+    height: '10%',
     margin:'center',
     overflow: 'hidden',
   };

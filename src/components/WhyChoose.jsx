@@ -14,8 +14,7 @@ const AMTSystemsDesign = () => {
       </p>
     
     <div style={{
-      minHeight: '100vh',
-      backgroundColor: 'white',
+      height: 'auto',
       padding: '20px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }}>
@@ -32,7 +31,8 @@ const AMTSystemsDesign = () => {
           flex: '1',
           minWidth: '320px',
           position: 'relative',
-          height: '500px',
+          height: 'auto',
+          paddingRight: '50px',
         }}>
           <HexagonalDesign />
         </div>
@@ -42,6 +42,7 @@ const AMTSystemsDesign = () => {
           flex: '1',
           minWidth: '400px',
           maxWidth: '600px',
+          paddingRight: '20px',
         }}>
           <Grid item xs={12} md={6}>
           <Typography variant="body1" paragraph>

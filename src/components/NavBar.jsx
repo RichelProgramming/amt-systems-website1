@@ -42,7 +42,7 @@ export default function NavBar({
     <header className="nav">
       <div className="nav__inner">
         <a className="nav__brand" href="/" aria-label={logo.alt}>
-          {logo.src ? <img src={logoamt} alt={logo.alt}  width="100px" height="200px"/> : <div className="nav__logo-fallback" />}
+           <img src={logoamt} alt={logo.alt}  width="160px" height="100px"/>
         </a>
 
         {/* Desktop nav */}
@@ -91,7 +91,7 @@ export default function NavBar({
               )}
             </div>
           ))}
-        </div>
+         </div>
       )}
     </header>
   );

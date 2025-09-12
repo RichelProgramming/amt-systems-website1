@@ -33,11 +33,7 @@ export default function Footer({
       <div className="footer__inner">
         <div>
           <div className="footer__brand">
-            {logo?.src ? (
-              <img src={logoamt} alt={logo.alt} />
-            ) : (
-              <div className="footer__logo-fallback" />
-            )}
+            <img src={logoamt} width="150px"  height='100px' alt={logo.alt} />
           </div>
 
           {about && <p className="footer__about">{about}</p>}
