@@ -9,6 +9,7 @@ export const getNavbarData = (t) => ({
     { label: t("navbar.services"), href: "/services" },
     { label: t("navbar.contact"), href: "/contact" },
     { label: t("navbar.reviews"), href: "/reviews" },
+    { label: "Galerie", href: "/galerie" },
   ],
 });
 
