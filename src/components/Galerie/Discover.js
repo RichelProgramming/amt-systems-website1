@@ -109,7 +109,7 @@ export default function CapgeminiInfoSection() {
           animate="visible"
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: '1.5rem',
             alignItems: 'stretch'
           }}
@@ -293,7 +293,166 @@ export default function CapgeminiInfoSection() {
               <span style={{ fontSize: '1.2rem' }}>→</span>
             </button>
           </motion.div>
+
+          {/* Nouveau motion.div 1 */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
+            style={{
+              background: 'linear-gradient(135deg, #FFB347 0%, #FFCC33 100%)',
+              color: '#333',
+              minHeight: '320px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+              padding: '2rem',
+              cursor: 'pointer'
+            }}
+          >
+            <h2 style={{
+              fontSize: '1.5rem',
+              fontWeight: 600,
+              marginBottom: '2rem',
+              marginTop: 0
+            }}>
+              Ressource 1
+            </h2>
+            <button style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              color: '#333',
+              backgroundColor: 'transparent',
+              border: '2px solid #333',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '1rem',
+              fontWeight: 500,
+              cursor: 'pointer',
+              alignSelf: 'flex-start',
+              transition: 'all 0.3s ease'
+            }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(0,0,0,0.05)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+            >
+              Découvrir
+              <span style={{ fontSize: '1.2rem' }}>→</span>
+            </button>
+          </motion.div>
+
+          {/* Nouveau motion.div 2 */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
+            style={{
+              background: 'linear-gradient(135deg, #8E54E9 0%, #4776E6 100%)',
+              color: 'white',
+              minHeight: '320px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+              padding: '2rem',
+              cursor: 'pointer'
+            }}
+          >
+            <h2 style={{
+              fontSize: '1.5rem',
+              fontWeight: 600,
+              marginBottom: '2rem',
+              marginTop: 0
+            }}>
+              Ressource 2
+            </h2>
+            <button style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              color: 'white',
+              backgroundColor: 'transparent',
+              border: '2px solid white',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '1rem',
+              fontWeight: 500,
+              cursor: 'pointer',
+              alignSelf: 'flex-start',
+              transition: 'all 0.3s ease'
+            }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+            >
+              Découvrir
+              <span style={{ fontSize: '1.2rem' }}>→</span>
+            </button>
+          </motion.div>
+
+          {/* Nouveau motion.div 3 */}
+          <motion.div
+            variants={itemVariants}
+            whileHover={{ scale: 1.03, transition: { duration: 0.3 } }}
+            style={{
+              background: 'linear-gradient(135deg, #43cea2 0%, #185a9d 100%)',
+              color: 'white',
+              minHeight: '320px',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              borderRadius: '12px',
+              boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
+              padding: '2rem',
+              cursor: 'pointer'
+            }}
+          >
+            <h2 style={{
+              fontSize: '1.5rem',
+              fontWeight: 600,
+              marginBottom: '2rem',
+              marginTop: 0
+            }}>
+              Ressource 3
+            </h2>
+            <button style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.5rem',
+              color: 'white',
+              backgroundColor: 'transparent',
+              border: '2px solid white',
+              padding: '0.75rem 1.5rem',
+              borderRadius: '8px',
+              fontSize: '1rem',
+              fontWeight: 500,
+              cursor: 'pointer',
+              alignSelf: 'flex-start',
+              transition: 'all 0.3s ease'
+            }}
+              onMouseEnter={(e) => e.target.style.backgroundColor = 'rgba(255,255,255,0.1)'}
+              onMouseLeave={(e) => e.target.style.backgroundColor = 'transparent'}
+            >
+              Découvrir
+              <span style={{ fontSize: '1.2rem' }}>→</span>
+            </button>
+          </motion.div>
         </motion.div>
+        {/* Responsive CSS */}
+        <style>
+          {`
+            @media (max-width: 1024px) {
+              div[style*="grid-template-columns"] {
+                grid-template-columns: repeat(2, 1fr) !important;
+              }
+            }
+            @media (max-width: 700px) {
+              div[style*="grid-template-columns"] {
+                grid-template-columns: 1fr !important;
+              }
+            }
+          `}
+        </style>
       </div>
     </div>
   );

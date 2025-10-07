@@ -2,6 +2,7 @@ import React from 'react';
 import HomeCard from "../components/HomeCard";
 import Discover from '../components/Galerie/Discover';
 import Welcom from '../components/Galerie/Welcom';
+import Projet from '../components/Galerie/Projet';
 // import Team from '../components/AboutUs/Team';
 import { useTranslation } from "react-i18next";
 
@@ -19,6 +20,7 @@ const AboutUs = () => {
   return (
     <div>
       <Welcom/>
+      <Projet />
       <Discover />
       {/* <Team /> */}
     </div>
