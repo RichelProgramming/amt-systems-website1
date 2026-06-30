@@ -307,6 +307,10 @@ const AMTSystemsLanding = () => {
     if (isTablet) return { ...baseStyle, ...tabletStyle };
     return baseStyle;
   };
+  const handleClick = () => {
+    window.location.href =  "/projects";
+  }
+
 
   return (
     <div style={styles.container}>
@@ -402,6 +406,7 @@ const AMTSystemsLanding = () => {
 
             {/* CTA Button */}
             <motion.button
+              onClick={handleClick}
               style={getResponsiveStyle(
                 styles.ctaButton,
                 { padding: '0.75rem 1.5rem', fontSize: '1rem' }

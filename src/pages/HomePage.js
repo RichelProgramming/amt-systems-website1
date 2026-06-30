@@ -55,7 +55,8 @@ export default function HomePage() {
           transition={{ duration: 1, delay: 0.8 }}
         />
       </svg>
-      <AboutSection />
+       <AboutSection /> 
+      <ServicesGrid services={services} />
       {/* <RecentsProjet /> */}
       <ServiceSolution />
       <AvisSlider />

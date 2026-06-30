@@ -3,10 +3,21 @@ import React from 'react';
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from "framer-motion";
 import CustumTextChange from './CustumTextChange';
+import {useNavigate} from "react-router-dom"
 
 const HeroSection = ({homeData}) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate ( "/contact#contact");
+    setTimeout(() => {
+      const element = document.getElementById("contact");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  }
 
   return (
     <Box
@@ -39,7 +50,7 @@ const HeroSection = ({homeData}) => {
             {homeData.description}
           </Typography>
           {homeData.buttonText?
-            <Button variant="contained" color="primary">
+            <Button variant="contained" color="primary" onClick={handleClick}>
               {homeData.buttonText}
             </Button>
             : null
@@ -73,7 +84,3 @@ const HeroSection = ({homeData}) => {
 };
 
 export default HeroSection;
-
-
-<img src={globe} className="App-logo" alt="logo" />
-      

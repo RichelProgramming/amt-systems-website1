@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ServiceCard({ icon = "", title, description, href = "#" }) {
+export default function ServiceCard({ icon = "", title, description, href= "/services"}) {
   return (
     <div className="card">
       <div className="card__icon" aria-hidden>{icon || "⬣"}</div>

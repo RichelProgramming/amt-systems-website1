@@ -12,6 +12,7 @@ const TEMPLATE_ID = "template_qnh3yys";
 const PUBLIC_KEY  = "8tNSmYir6Fu3QGzng";
 
 export default function ContactPage() {
+  
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     from_name: "",
@@ -122,13 +123,14 @@ export default function ContactPage() {
           height="100%"
           frameBorder="0"
           style={{ border: 0 }}
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4142.038933748019!2d2.3522219!3d48.856614!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e671d87783e885%3A0x8dcbff4d32dd0762!2sFrance!5e0!3m2!1sfr!2sfr!4v1711090703406!5m2!1sfr!2sfr"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d23220.323637242618!2d9.736158062832478!3d4.107372136838546!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1sfr!2scm!4v1782389599936!5m2!1sfr!2scm"
           allowFullScreen
         />
       </Paper>
 
       {/* Contact Form Section */}
       <Paper
+        id="contact"
         component="form"
         onSubmit={sendEmail}
         elevation={4}

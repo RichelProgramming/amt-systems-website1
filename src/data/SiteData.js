@@ -7,6 +7,7 @@ export const getNavbarData = (t) => ({
     { label: t("navbar.home"), href: "/" },
     { label: t("navbar.about"), href: "/aboutus" },
     { label: t("navbar.services"), href: "/services" },
+    { label: t("navbar.projects"), href: "/projects" },
     { label: t("navbar.contact"), href: "/contact" },
     { label: t("navbar.reviews"), href: "/reviews" },
     { label: "Galerie", href: "/galerie" },

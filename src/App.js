@@ -5,6 +5,7 @@ import HomePage from "./pages/HomePage";
 import AvisPage from "./pages/AvisPage";
 import GaleriePage from "./pages/GaleriePage";
 import ServicesPage from "./pages/ServicesPage";
+import ProjectsPage from "./pages/projectsPage";
 import CursorAnimation from "./components/CustumPointer";
 import ContactPage from "./pages/ContactPage";
 import AboutUs from "./pages/AboutUs";
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/reviews" element={<AvisPage />} />
           <Route path="/galerie" element={<GaleriePage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
         </Routes>
         <Footer {...footerProps} />
       </div>

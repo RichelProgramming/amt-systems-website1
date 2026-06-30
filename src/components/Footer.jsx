@@ -1,7 +1,7 @@
 import React from "react";
 import { Facebook, Instagram, Linkedin, Twitter, Phone, Mail, MapPin } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import logoamt from "../assets/logo.png";
+import logoamt from "../assets/logonew.svg";
 
 const iconFromName = (nameOrLabel) => {
   const key = String(nameOrLabel || "").toLowerCase();
@@ -13,7 +13,7 @@ const iconFromName = (nameOrLabel) => {
 };
 
 export default function Footer({
-  logo = { src: " ", alt: "AMT Systems Engineering" },
+  logo = { src: logoamt, alt: "AMT Systems Engineering" },
   about,
   columns = [],
   contact = {
@@ -33,7 +33,7 @@ export default function Footer({
       <div className="footer__inner">
         <div>
           <div className="footer__brand">
-            <img src={logoamt} width="150px"  height='100px' alt={logo.alt} />
+            <img src={logoamt} width="250px"  height='100px' alt={logo.alt} />
           </div>
 
           {about && <p className="footer__about">{about}</p>}

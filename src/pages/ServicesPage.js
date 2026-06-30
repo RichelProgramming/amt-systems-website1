@@ -1,9 +1,11 @@
 import React from "react";
 import ServicesGrid from "../components/ServicesGrid";
+import OurServices from "../components/OurServices";
 import { getServices } from "../data/SiteData";
 import { useTranslation } from "react-i18next";
 import WhyChooseUs from "../components/WhyChoose";
 import HomeCard from "../components/HomeCard";
+import GlobeAnimation from '../components/animatinG';
 
 export default function ServicesPage() {
   const { t } = useTranslation();
@@ -24,8 +26,10 @@ export default function ServicesPage() {
 
   return (
     <div>
-       <HomeCard homeData={homeData}/>
-      <ServicesGrid services={services} />
+       <HomeCard homeData={homeData} />
+      {/* <OurServices /> */}
+      <GlobeAnimation />
+      {/* <ServicesGrid services={services} /> */}
       <WhyChooseUs />
     </div>
   );

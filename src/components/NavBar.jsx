@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import Dropdown from "./Dropdown";            // pour les sous-menus éventuels
 import LanguageSwitcher from "./LanguageSwitcher"; // toggle EN/FR (blanc)
 import { useTranslation } from "react-i18next";
-import logoamt from "../assets/logo.png";
+import logoamt from "../assets/logonew.svg";
 
 const LANG_LABELS = {
   en: "English",
@@ -42,7 +42,7 @@ export default function NavBar({
     <header className="nav">
       <div className="nav__inner">
         <a className="nav__brand" href="/" aria-label={logo.alt}>
-           <img src={logoamt} alt={logo.alt}  width="160px" height="100px"/>
+           <img src={logoamt} alt={logo.alt}  width="250px" height="100px"/>
         </a>
 
         {/* Desktop nav */}
