@@ -8,8 +8,10 @@ import {
     Button,
 } from "@mui/material";
 import { ArrowBackIos, ArrowForwardIos } from "@mui/icons-material";
+import { useTranslation } from "react-i18next";
 
 const AvisPage = () => {
+    const { t } = useTranslation();
     const [reviews, setReviews] = useState([
         {
             id: 1,
@@ -62,7 +64,7 @@ const AvisPage = () => {
             }}
         >
             <Typography variant="h4" fontWeight="bold" gutterBottom>
-                Avis des utilisateurs
+                {t("avisHome.userReviews")}
             </Typography>
 
             <Box

@@ -5,10 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import CardActionArea from '@mui/material/CardActionArea';
 import "../../App.css";
+import { useTranslation } from "react-i18next";
 
 import { motion } from "framer-motion";
 
 function SelectActionCard() {
+  const { t } = useTranslation();
   const [selectedCard, setSelectedCard] = React.useState(0);
   return (
     <div>
@@ -21,7 +23,7 @@ function SelectActionCard() {
           <p>
             <label className='title-text'>AMT</label> 
           </p>
-          <h1>l'm the best for you . Make ypur vison is our work</h1>
+          <h1>{t("socialMedia.bestForYou")}</h1>
         </motion.div>
     </div>
   );

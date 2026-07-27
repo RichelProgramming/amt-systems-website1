@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 import BugReportIcon from "@mui/icons-material/BugReport";
 import PhoneAndroidIcon from "@mui/icons-material/PhoneAndroid";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -15,76 +16,48 @@ const gradientStyle = {
   WebkitTextFillColor: "transparent",
 };
 
-const serviceBlocks = [
-  {
-    icon: BugReportIcon,
-    title: "Prototyping & Reverse Engineering",
-    description:
-      "Fast product proof-of-concept and hardware validation with modern CAD, 3D printing, and PCB layout prototyping.",
-    items: [
-      "CAD modelling",
-      "3D printing and 3D scanning",
-      "HW layout design & PCB prototyping",
-    ],
-  },
-  {
-    icon: PhoneAndroidIcon,
-    title: "Web & Mobile App Design",
-    description:
-      "Design, build and deliver both mobile and web applications with strong UX, embedded software, and high performance.",
-    items: [
-      "Mobile app design",
-      "Embedded software design",
-      "Web application design",
-    ],
-  },
-  {
-    icon: LocalShippingIcon,
-    title: "Procurement Services",
-    description:
-      "Technical procurement support for supplier selection, relationship management, and risk control in the supply chain.",
-    items: [
-      "Customer needs identification & specification",
-      "Supplier identification & selection",
-      "Supplier relationship management",
-      "Risk management in procurement",
-    ],
-  },
-  {
-    icon: SchemaIcon,
-    title: "Systems-Engineering Services",
-    description:
-      "Structured systems engineering and product development from requirements to hardware/software implementation.",
-    items: [
-      "Requirement engineering",
-      "Architecture design with HW/SW implementation",
-      "Verification and validation",
-    ],
-  },
-  {
-    icon: StorageIcon,
-    title: "Data Engineering & Analytics",
-    description:
-      "Collect, transform and analyze your data to reveal the strategic insights that drive better decisions.",
-    items: [
-      "Data acquisition and transformation",
-      "Data analysis",
-      "Data modeling",
-    ],
-  },
-  {
-    icon: InventoryIcon,
-    title: "Supply Management",
-    description:
-      "Inventory and supply chain optimization services to keep projects moving and reduce operational bottlenecks.",
-    items: [
-      "Inventory management",
-      "Supply chain optimization",
-    ],
-  },
-];
-
 export default function OurServices() {
+  const { t } = useTranslation();
+
+  const serviceBlocks = [
+    {
+      icon: BugReportIcon,
+      title: t("ourServices.prototyping.title"),
+      description: t("ourServices.prototyping.desc"),
+      items: t("ourServices.prototyping.items", { returnObjects: true }),
+    },
+    {
+      icon: PhoneAndroidIcon,
+      title: t("ourServices.webMobile.title"),
+      description: t("ourServices.webMobile.desc"),
+      items: t("ourServices.webMobile.items", { returnObjects: true }),
+    },
+    {
+      icon: LocalShippingIcon,
+      title: t("ourServices.procurement.title"),
+      description: t("ourServices.procurement.desc"),
+      items: t("ourServices.procurement.items", { returnObjects: true }),
+    },
+    {
+      icon: SchemaIcon,
+      title: t("ourServices.systemsEng.title"),
+      description: t("ourServices.systemsEng.desc"),
+      items: t("ourServices.systemsEng.items", { returnObjects: true }),
+    },
+    {
+      icon: StorageIcon,
+      title: t("ourServices.dataEng.title"),
+      description: t("ourServices.dataEng.desc"),
+      items: t("ourServices.dataEng.items", { returnObjects: true }),
+    },
+    {
+      icon: InventoryIcon,
+      title: t("ourServices.supplyMgmt.title"),
+      description: t("ourServices.supplyMgmt.desc"),
+      items: t("ourServices.supplyMgmt.items", { returnObjects: true }),
+    },
+  ];
+
   return (
     <Box
       component={motion.section}
@@ -114,7 +87,7 @@ export default function OurServices() {
             mb: 3,
           }}
         >
-          AMT Systems-Engineering Services
+          {t("ourServices.title")}
         </Typography>
 
         <Typography
@@ -127,7 +100,7 @@ export default function OurServices() {
             ...gradientStyle,
           }}
         >
-          A Complete Engineering and Procurement Offer
+          {t("ourServices.subtitle")}
         </Typography>
 
         <Box

@@ -5,6 +5,7 @@ import StarIcon from "@mui/icons-material/Star";
 import GavelIcon from "@mui/icons-material/Gavel";
 import SchoolIcon from "@mui/icons-material/School";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import {useTranslation} from "react-i18next";
 
 const gradientStyle = {
   background: "linear-gradient(90deg,rgb(102, 188, 70),rgb(65, 66, 141),red)",
@@ -15,46 +16,45 @@ const gradientStyle = {
 const sections = [
   {
     id: "core-values",
-    title: "Our Core Values",
+    titleKey: "howToCreateValue.coreValues",
     icon: StarIcon,
-    content: "Our operations are governed by a strict ethical code:",
+    contentKey: "howToCreateValue.coreValuesIntro",
     items: [
-      { label: "Reliability", desc: "We keep our promises." },
-      { label: "Excellence", desc: "We strive for the highest quality in every prototype and product." },
-      { label: "Kaizen", desc: "We improve continuously." },
-      { label: "Respect", desc: "We respect our customers, our partners, and the environment." },
+      { label: "howToCreateValue.reliability", desc: "howToCreateValue.reliabilityDesc" },
+      { label: "howToCreateValue.excellence", desc: "howToCreateValue.excellenceDesc" },
+      { label: "howToCreateValue.kaizen", desc: "howToCreateValue.kaizenDesc" },
+      { label: "howToCreateValue.respect", desc: "howToCreateValue.respectDesc" },
     ],
   },
   {
     id: "environment-behaviors",
-    title: "Environment and Behaviors",
+    titleKey: "howToCreateValue.environment",
     icon: GavelIcon,
-    content:
-      "A urban legend still denies Africans the capabilities to develop high-tech products. At AMT Systems Engineering SARL, we demystify these beliefs and set the benchmarks. We adopt a growth mindset and invest in high-tech infrastructures. Some key elements to implement this right attitude are:",
+    contentKey: "howToCreateValue.environmentDesc",
     keyElements: [
-      "Systems thinking: design decisions consider full lifecycle, interfaces, and emergent behavior",
-      "Data-driven engineering and leading: single source of truth (models, requirements repository) and measurable evidence",
-      "Quality and safety first: blameless reviews, formal verification, continuous compliance checks",
-      "Continuous learning: post-mortems, knowledge base, training and mentoring",
-      "Build it quick and check: Test and prototyping equipment",
+      "howToCreateValue.keyElements.systemsThinking",
+      "howToCreateValue.keyElements.dataDrivenEngineering",
+      "howToCreateValue.keyElements.qualitySafety",
+      "howToCreateValue.keyElements.continuousLearning",
+      "howToCreateValue.keyElements.buildItQuick",
     ],
   },
   {
     id: "capabilities",
-    title: "Capabilities",
+    titleKey: "howToCreateValue.capabilities",
     icon: SchoolIcon,
-    content:
-      "AMT Systems Engineering SARL delivers high-quality products and services. To become so, we continuously improve, adjust capabilities, and shape the necessary environment so that engineers can work effectively. We differentiate between individual and company capabilities. Our individual capabilities focus on managerial, technical, and methodical skills. Our young team members are daily trained and coached for self-improvement.",
+    contentKey: "howToCreateValue.capabilitiesDesc",
     coreDomains: [
-      "Systems architecture & model-based components and systems engineering (MBSE, SysML) including technical risks, safety and hazard analysis",
-      "Information technology and embedded software engineering to complete the implementation of smart products",
-      "Technical project and risk management to lead your projects to expected goals",
-      "Digital engineering including modelling & simulation techniques, as well as data analytics",
+      "howToCreateValue.coreDomains.systemsArchitecture",
+      "howToCreateValue.coreDomains.informationTechnology",
+      "howToCreateValue.coreDomains.technicalProject",
+      "howToCreateValue.coreDomains.digitalEngineering",
     ],
   },
 ];
 
 const HowToCreateValue = () => {
+   const { t } = useTranslation();
   return (
     <Box
       component={motion.section}
@@ -83,7 +83,7 @@ const HowToCreateValue = () => {
             ...gradientStyle,
           }}
         >
-          How to Create Value
+          {t("howToCreateValue.title")}
         </Typography>
 
         <Box sx={{ width: 80, height: 5, background: "linear-gradient(90deg, #5263ff 0%, #1d284f 100%)", mx: "auto", mb: 6, borderRadius: 4 }} />
@@ -136,12 +136,12 @@ const HowToCreateValue = () => {
                         lineHeight: 1.2,
                       }}
                     >
-                      {section.title}
+                      {t(section.titleKey)}
                     </Typography>
                   </Box>
 
                   {/* Content Text */}
-                  {section.content && (
+                  {section.contentKey && (
                     <Typography
                       sx={{
                         color: "#33415c",
@@ -151,7 +151,7 @@ const HowToCreateValue = () => {
                         mb: section.items || section.keyElements || section.coreDomains ? 3 : 0,
                       }}
                     >
-                      {section.content}
+                      {t(section.contentKey)}
                     </Typography>
                   )}
 
@@ -177,7 +177,7 @@ const HowToCreateValue = () => {
                                 mb: 0.5,
                               }}
                             >
-                              {item.label}
+                              {t(item.label)}
                             </Typography>
                             <Typography
                               sx={{
@@ -186,7 +186,7 @@ const HowToCreateValue = () => {
                                 lineHeight: 1.6,
                               }}
                             >
-                              {item.desc}
+                              {t(item.desc)}
                             </Typography>
                           </Box>
                         </Box>
@@ -214,7 +214,7 @@ const HowToCreateValue = () => {
                               lineHeight: 1.6,
                             }}
                           >
-                            {element}
+                            {t(element)}
                           </Typography>
                         </Box>
                       ))}
@@ -241,7 +241,7 @@ const HowToCreateValue = () => {
                               lineHeight: 1.6,
                             }}
                           >
-                            {domain}
+                            {t(domain)}
                           </Typography>
                         </Box>
                       ))}

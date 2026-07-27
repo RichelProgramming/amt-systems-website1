@@ -25,8 +25,7 @@ export default function Footer({
   socials = [],
   year = new Date().getFullYear(),
 }) {
-  const { i18n } = useTranslation();
-  const isFr = i18n.language?.startsWith("fr");
+  const { t } = useTranslation();
 
   return (
     <footer className="footer">
@@ -74,7 +73,7 @@ export default function Footer({
         ))}
 
         <div>
-          <h4 className="footer__title">{isFr ? "Adresse" : "Address"}</h4>
+          <h4 className="footer__title">{t("footer.address")}</h4>
           <ul className="footer__contact">
             <li>
               <span style={{ display: "inline-flex", gap: 8, alignItems: "center" }}>
@@ -100,11 +99,11 @@ export default function Footer({
       <div className="footer__bottom">
         <p>
           ©{year} <strong>AMT System Engineering</strong>{" "}
-          {isFr ? "propulsé par" : "is proudly Powered by"} <strong>AMT Team</strong>
+          {t("footer.poweredBy")} <strong>AMT Team</strong>
         </p>
         <div className="footer__legal">
-          <a href="#">{isFr ? "Politique de confidentialité" : "Privacy Policy"}</a>
-          <a href="#">{isFr ? "Conditions générales" : "Terms & Conditions"}</a>
+          <a href="#">{t("footer.privacyPolicy")}</a>
+          <a href="#">{t("footer.termsConditions")}</a>
         </div>
       </div>
     </footer>

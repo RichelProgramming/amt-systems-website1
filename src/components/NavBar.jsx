@@ -71,7 +71,7 @@ export default function NavBar({
       {open && (
         <div className="nav__mobile">
           {/* Toggle langue aussi dispo en mobile */}
-          <div className="nav__mobile-langs" style={{ padding: "8px 16px" }}>
+          <div className="nav__mobile-langs" style={{ padding: "8px 16px",background: "#333366",}}>
             <LanguageSwitcher align="left" size="small" />
           </div>
 

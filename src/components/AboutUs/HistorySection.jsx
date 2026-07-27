@@ -11,56 +11,59 @@ import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import VerifiedUserIcon from "@mui/icons-material/VerifiedUser";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Business from "@mui/icons-material/Business";
+import { useTranslation } from "react-i18next";
 
 const primaryGradient = "linear-gradient(90deg, rgb(102, 188, 70), rgb(65, 66, 141), red)";
 const iconGradient = "linear-gradient(135deg, #5263ff 0%, #364999 100%)";
 
 const timelineEvents = [
-  { date: "Mi‑2020", title: "Lancement du projet", desc: "Finalisation du business plan et création d’un mini‑laboratoire pour l’apprentissage et le prototypage." },
-  { date: "2025", title: "Immatriculation officielle", desc: "Immatriculation officielle de la société." },
-  { date: "2026", title: "Premières réalisations", desc: "Premières réalisations concrètes validées et mises en œuvre." },
+  { dateKey: "aboutHistory.mid2020", titleKey: "aboutHistory.projectLaunch", descKey: "aboutHistory.foundationDesc" },
+  { dateKey: "aboutHistory.year2025", titleKey: "aboutHistory.officialRegistration", descKey: "aboutHistory.officialRegistrationDesc" },
+  { dateKey: "aboutHistory.year2026", titleKey: "aboutHistory.firstAchievements", descKey: "aboutHistory.firstAchievementsDesc" },
 ];
 
 const historyBlocks = [
   {
     icon: ShuffleIcon,
-    tag: "Secteurs",
-    title: "Domaines d’activité et secteurs cibles",
-    desc: "AMT se concentre sur la mécatronique, les logiciels embarqués, les solutions logicielles et la mécanique. Les principaux secteurs visés sont l’agro‑transformation, le génie civil, l’ingénierie mécanique et l’éducation professionnelle. L’entreprise développe des produits et services tels que des stations de transformation agro‑alimentaire, des incubateurs chauffés par biomasse, des systèmes de traçabilité et des lignes de production adaptées au contexte local.",
+    tagKey: "aboutHistory.block1Tag",
+    titleKey: "aboutHistory.block1Title",
+    descKey: "aboutHistory.block1Desc",
   },
   {
     icon: HandymanIcon,
-    tag: "R&D",
-    title: "Processus de développement et prototypage",
-    desc: "Le modèle opérationnel repose sur un cycle complet : idéation, conception, ingénierie, prototypage et réalisation. Chaque projet suit une démarche structurée avec cahier des charges, schémas de réalisation, mise en pratique et expérimentation jusqu’à la validation du prototype. Les services offerts incluent l’ingénierie système, le design industriel, le prototypage rapide et la maintenance.",
+    tagKey: "aboutHistory.block2Tag",
+    titleKey: "aboutHistory.block2Title",
+    descKey: "aboutHistory.block2Desc",
   },
   {
     icon: CorporateFareIcon,
-    tag: "Structure",
-    title: "Organisation et infrastructures",
-    desc: "L’entreprise est structurée autour d’une direction générale et de fonctions supports (ressources humaines, marketing, finances, technique, logistique). Les infrastructures prévues comprennent des ateliers spécialisés : mécanique et soudure, traitement thermique et surfaces, prototypage et reverse engineering (impression 3D, scan 3D), électronique, mesures et analyse, pneumatique/hydraulique, et automatisme. Un espace de partage de postes et de laboratoires permet la mutualisation d’outils et la location d’espaces de travail.",
+    tagKey: "aboutHistory.block3Tag",
+    titleKey: "aboutHistory.block3Title",
+    descKey: "aboutHistory.block3Desc",
   },
   {
     icon: Business,
-    tag: "Modèle Éco",
-    title: "Modèle économique et canaux de revenus",
-    desc: "Le modèle économique combine prestations d’ingénierie (conception, études, simulation), services de prototypage rapide, location d’espaces et d’équipements (workplace sharing, labs), contrats de maintenance, formations professionnelles et développement/vente de produits réalisés. Ces activités visent à générer des revenus diversifiés et à soutenir la croissance progressive des capacités de production.",
+    tagKey: "aboutHistory.block4Tag",
+    titleKey: "aboutHistory.block4Title",
+    descKey: "aboutHistory.block4Desc",
   },
   {
     icon: RocketLaunchIcon,
-    tag: "Déploiement",
-    title: "Plan de déploiement et ressources",
-    desc: "Le déploiement se fait par étapes : légalisation et immatriculation (effectuée en 2025), recherche de locaux, installation d’ateliers de base, acquisition d’équipements essentiels (impression 3D, outils de laboratoire, machines d’atelier), recrutement et formation progressive du personnel, puis extension des ateliers et commercialisation. L’effort initial privilégie l’autonomie technique, la montée en compétences et la validation de concepts à travers des prototypes opérationnels.",
+    tagKey: "aboutHistory.block5Tag",
+    titleKey: "aboutHistory.block5Title",
+    descKey: "aboutHistory.block5Desc",
   },
   {
     icon: VerifiedUserIcon,
-    tag: "Impact",
-    title: "Engagements et perspectives",
-    desc: "AMT s’engage à développer des solutions « local for local », favorisant la création de valeur sur place et la transmission de compétences. À terme, l’entreprise vise à soutenir l’émergence d’écosystèmes locaux d’innovation industrielle, à former des professionnels compétents et à promouvoir des chaînes de production adaptées aux réalités régionales.",
+    tagKey: "aboutHistory.block6Tag",
+    titleKey: "aboutHistory.block6Title",
+    descKey: "aboutHistory.block6Desc",
   },
 ];
 
 export default function HistorySection() {
+  const { t } = useTranslation();
+
   return (
     <Box
       component={motion.section}
@@ -98,7 +101,7 @@ export default function HistorySection() {
             WebkitTextFillColor: "transparent"
           }}
         >
-          Historique et présentation
+          {t("aboutHistory.title")}
         </Typography>
 
         <Box sx={{ width: 120, height: 6, background: "linear-gradient(90deg, #5263ff 0%, #66bc46 100%)", mx: "auto", mb: 10, borderRadius: 4 }} />
@@ -136,10 +139,10 @@ export default function HistorySection() {
             >
               <Typography sx={{ fontSize: "1.5rem", fontWeight: 900, color: "#0B132B", mb: 2, display: "flex", alignItems: "center", gap: 1.5 }}>
                 <span style={{ width: "8px", height: "24px", background: "#5263ff", borderRadius: "4px", display: "inline-block" }}></span>
-                Fondation et objectif
+                {t("aboutHistory.foundation")}
               </Typography>
               <Typography sx={{ color: "#4A5568", fontSize: "1rem", lineHeight: 1.8, fontWeight: 500 }}>
-                <strong>AMT‑systems‑Engineering SARL</strong> (African Machinery Technologies) a été créée à la mi‑2020 avec pour ambition de concevoir, prototyper et fabriquer des solutions mécatroniques adaptées aux besoins locaux. L’objectif de l’entreprise est d’améliorer la viabilité économique locale en transformant des matières premières jusqu’à des produits finis, tout en soutenant l’entrepreneuriat et la formation des jeunes.
+                <strong>{t("aboutHistory.company")}</strong> {t("aboutHistory.foundationDesc1")}
               </Typography>
             </Box>
 
@@ -175,14 +178,14 @@ export default function HistorySection() {
                   <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 0.5 }}>
                     <AccessTimeIcon sx={{ fontSize: 16, color: "#5263ff" }} />
                     <Typography sx={{ fontSize: "0.95rem", fontWeight: 800, color: "#5263ff", letterSpacing: "0.05em" }}>
-                      {event.date}
+                      {t(event.dateKey)}
                     </Typography>
                   </Box>
                   <Typography sx={{ fontSize: "1.15rem", fontWeight: 800, color: "#0B132B" }}>
-                    {event.title}
+                    {t(event.titleKey)}
                   </Typography>
                   <Typography sx={{ fontSize: "0.95rem", color: "#64748B", mt: 0.5, lineHeight: 1.5, fontWeight: 500 }}>
-                    {event.desc}
+                    {t(event.descKey)}
                   </Typography>
                 </Box>
               ))}
@@ -238,7 +241,7 @@ export default function HistorySection() {
                       }}
                     >
                       <Typography sx={{ fontSize: "0.72rem", fontWeight: 700, color: "#5263ff", textTransform: "uppercase", letterSpacing: "0.02em" }}>
-                        {block.tag}
+                        {t(block.tagKey)}
                       </Typography>
                     </Box>
 
@@ -274,7 +277,7 @@ export default function HistorySection() {
                           letterSpacing: "-0.01em"
                         }}
                       >
-                        {block.title}
+                        {t(block.titleKey)}
                       </Typography>
                       <Typography
                         sx={{
@@ -285,7 +288,7 @@ export default function HistorySection() {
                           textAlign: "justify"
                         }}
                       >
-                        {block.desc}
+                        {t(block.descKey)}
                       </Typography>
                     </Box>
                   </Box>

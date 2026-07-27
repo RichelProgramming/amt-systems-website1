@@ -1,6 +1,9 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const HexagonalDesign = () => {
+  const { t } = useTranslation();
+  
   // Styles CSS pour les hexagones
   const hexagonStyle = {
     width: '120px',
@@ -101,7 +104,7 @@ const HexagonalDesign = () => {
   const hexagons = [
     {
       id: 'customer',
-      text: 'Customer/\nUser journey',
+      text: t('hexagone.customer') + '\n' + t('hexagone.userJourney'),
       color: '#E67E22',
       position: { 
         top: isMobile ? '15px' : '25px', 
@@ -111,7 +114,7 @@ const HexagonalDesign = () => {
     },
     {
       id: 'business',
-      text: 'Leading my\nBusiness',
+      text: t('hexagone.leading') + '\n' + t('hexagone.business'),
       color: '#D4A832',
       position: { 
         top: isMobile ? '60px' : '90px', 
@@ -120,7 +123,7 @@ const HexagonalDesign = () => {
     },
     {
       id: 'deployment',
-      text: 'Quality\nfunctional\ndeployment',
+      text: t('hexagone.quality') + '\n' + t('hexagone.functional') + '\n' + t('hexagone.deployment'),
       color: '#9BC53D',
       position: { 
         bottom: isMobile ? '60px' : '85px', 
@@ -129,7 +132,7 @@ const HexagonalDesign = () => {
     },
     {
       id: 'implementation',
-      text: 'UX\nImplementation',
+      text: t('hexagone.ux') + '\n' + t('hexagone.implementation'),
       color: '#7CB342',
       position: { 
         bottom: isMobile ? '15px' : '25px', 
@@ -139,7 +142,7 @@ const HexagonalDesign = () => {
     },
     {
       id: 'delivery',
-      text: 'Delivery\n&\nrelease',
+      text: t('hexagone.delivery') + '\n' + t('hexagone.release'),
       color: '#2E7D32',
       position: { 
         bottom: isMobile ? '60px' : '90px', 

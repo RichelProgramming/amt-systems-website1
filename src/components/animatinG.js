@@ -1,6 +1,8 @@
 import React from "react";
 import { Box, Typography } from "@mui/material";
 import { motion } from "framer-motion";
+import {useTranslation} from "react-i18next";
+
 
 // Importation des icônes Material-UI
 import MemoryIcon from "@mui/icons-material/Memory";
@@ -20,45 +22,65 @@ const gradientStyle = {
 const engineeringServices = [
   {
     icon: MemoryIcon,
-    title: "Prototyping & Reverse Engineering",
-    items: ["CAD-modelling", "3D-Printing and 3D scanning", "HW-Layout design & PCB prototyping"],
+    title: "ourServices.prototyping.title",
+    items: [
+      "ourServices.prototyping.items.0",
+      "ourServices.prototyping.items.1",
+      "ourServices.prototyping.items.2",
+    ],
   },
   {
     icon: PhoneAndroidIcon,
-    title: "Web & Mobile App Design",
-    items: ["Mobile App Design", "Embedded SW design", "Web App Design"],
+    title: "ourServices.webMobile.title",
+    items: [
+      "ourServices.webMobile.items.0",
+      "ourServices.webMobile.items.1",
+      "ourServices.webMobile.items.2",
+    ],
   },
   {
     icon: SchemaIcon,
-    title: "Systems-Engineering Services",
-    items: ["Requirement engineering", "Architecture Design incl. technical implementation in HW / SW", "Verification and validation"],
+    title: "ourServices.systemsEng.title",
+    items: [
+      "ourServices.systemsEng.items.0",
+      "ourServices.systemsEng.items.1",
+      "ourServices.systemsEng.items.2",
+    ],
   },
   {
     icon: StorageIcon,
-    title: "Data Engineering & Analytics",
-    items: ["Data acquisition and transformation", "Data analysis", "Data modeling"],
+    title: "ourServices.dataEng.title",
+    items: [
+      "ourServices.dataEng.items.0",
+      "ourServices.dataEng.items.1",
+      "ourServices.dataEng.items.2",
+    ],
   },
 ];
 
 const procurementServices = [
   {
     icon: LocalShippingIcon,
-    title: "Procurement Services",
+    title: "ourServices.procurement.title",
     items: [
-      "Customer needs Identification & Specification",
-      "Supplier Identification & Selection",
-      "Supplier Relationship Management",
-      "Risk Management in procurement",
+      "ourServices.procurement.items.0",
+      "ourServices.procurement.items.1",
+      "ourServices.procurement.items.2",
+      "ourServices.procurement.items.3",
     ],
   },
   {
     icon: InventoryIcon,
-    title: "Supply Management",
-    items: ["Inventory Management", "Supply Chain Optimization"],
+    title: "ourServices.supplyMgmt.title",
+    items: [
+      "ourServices.supplyMgmt.items.0",
+      "ourServices.supplyMgmt.items.1",
+    ],
   },
 ];
 
 function ServiceCard({ icon: IconComponent, title, items, index }) {
+   const { t } = useTranslation();
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -108,7 +130,7 @@ function ServiceCard({ icon: IconComponent, title, items, index }) {
             lineHeight: 1.3,
           }}
         >
-          {title}
+          {t(title)}
         </Typography>
 
         <Box sx={{ display: "grid", gap: 2, mt: "auto" }}> {/* mt: 'auto' aligne les listes si les titres ont des longueurs différentes */}
@@ -116,7 +138,7 @@ function ServiceCard({ icon: IconComponent, title, items, index }) {
             <Box key={itemIdx} sx={{ display: "flex", gap: 1.5, alignItems: "flex-start" }}>
               <CheckCircleIcon sx={{ color: "#5263ff", fontSize: 18, flexShrink: 0, mt: 0.4 }} />
               <Typography sx={{ color: "#55627c", fontSize: "0.95rem", lineHeight: 1.5, fontWeight: 500 }}>
-                {item}
+                {t(item)}
               </Typography>
             </Box>
           ))}
@@ -127,6 +149,8 @@ function ServiceCard({ icon: IconComponent, title, items, index }) {
 }
 
 export default function Animating() {
+  const { t } = useTranslation();
+
   return (
     <Box
       component={motion.section}
@@ -159,7 +183,7 @@ export default function Animating() {
             mb: 2,
           }}
         >
-          AMT Systems-Engineering Services
+          {t("ourServices.title")}
         </Typography>
 
         <Typography
@@ -173,7 +197,7 @@ export default function Animating() {
             ...gradientStyle,
           }}
         >
-          A Unique Cross-Domain Ecosystem
+          {t("ourServices.subtitle")}
         </Typography>
 
         <Box
@@ -199,11 +223,7 @@ export default function Animating() {
             lineHeight: 1.8,
           }}
         >
-          What sets AMT Systems Engineering SARL apart is our ability to break down silos. 
-          Traditional firms often specialize in just one area. We offer a unique selling point: 
-          a strong cross-connection between Hardware Engineering, Software Engineering, and Mechanical Engineering. 
-          By integrating Artificial Intelligence (AI) into this ecosystem, we link and enhance all these domains, 
-          delivering smart, innovative solutions from a single source.
+          {t("ourServices.heroDesc")}
         </Typography>
 
         {/* ================= SECTION A : ENGINEERING SERVICES ================= */}
@@ -218,7 +238,7 @@ export default function Animating() {
               pl: 2,
             }}
           >
-            Engineering Services
+            {t("ourServices.engineeringTitle")}
           </Typography>
           
           <Typography
@@ -230,9 +250,7 @@ export default function Animating() {
               mb: 6,
             }}
           >
-            There is no smart technology without the incorporation of IT-solutions. In today's rapidly advancing 
-            technological landscape, integrating Information Technology (IT) is crucial for creating smart and efficient solutions. 
-            Our IT solutions enable you to access, analyze, and interpret vast amounts of data, optimizing operations and strategies.
+            {t("ourServices.engineeringDesc")}
           </Typography>
 
           {/* 3. Modification de la Grille : Passage fluide de 1 à 2, puis 3, et enfin 4 colonnes sur écrans XL */}
@@ -272,7 +290,7 @@ export default function Animating() {
               pl: 2,
             }}
           >
-            Procurement and Supply Services
+            {t("ourServices.procurementSectionTitle")}
           </Typography>
           
           <Typography
@@ -284,10 +302,7 @@ export default function Animating() {
               mb: 6,
             }}
           >
-            As companies and institutions increasingly focus on their core competencies, the demand for outsourcing 
-            secondary activities like spare part procurement continues to rise. AMT Systems-Engineering SARL, a global 
-            player with associates worldwide, offers these services to its customers. Connecting our business partners 
-            with potential suppliers or managing supplies on their behalf is a key aspect of our operations.
+            {t("ourServices.procurementDesc")}
           </Typography>
 
           {/* 4. Grille Logistique : Étirée en 2 colonnes larges et massives en Desktop */}

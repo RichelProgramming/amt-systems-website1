@@ -4,9 +4,11 @@ import TabSocialMedia from "./TabSocialMedia.components"
 import img1 from "../../assets/contact_spire.svg";
 import { motion } from "framer-motion";
 import CustumTitle from '../CustumTitle';
+import { useTranslation } from "react-i18next";
 
 const ContactPage = () => {
-  const title="Let's stay in contact";
+  const { t } = useTranslation();
+  const title = t("socialMedia.stayInContact");
   return (
     <div>
         <CustumTitle title={title} />

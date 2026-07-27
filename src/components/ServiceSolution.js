@@ -8,35 +8,37 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import s1 from '../assets/service.png';
 import CustumTitle from './CustumTitle';
 
-const highlights = [
-  {
-    title: "Professionals",
-    description: "Our team has more than 4 years of experience in the society. We are engaged in our work.",
-    image: s1,
-  },
-  {
-    title: "We Deliver",
-    description: "We make sure we always deliver on time. We are committed to building a reliable brand.",
-    image: s1,
-  },
-  {
-    title: "Young & Ambitious",
-    description: "The company is managed by young people. We set the tone. You can count on us in a long run.",
-    image: s1,
-  },
-  {
-    title: "Cost-Effective",
-    description: "We are highly affordable, our rates are perfect to fit in any formats, with no hidden costs.",
-    image: s1,
-  },
-];
-
 const WhyChooseUs = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
+  const highlights = [
+    {
+      title: t("serviceSolution.professionals.title"),
+      description: t("serviceSolution.professionals.desc"),
+      image: s1,
+    },
+    {
+      title: t("serviceSolution.deliver.title"),
+      description: t("serviceSolution.deliver.desc"),
+      image: s1,
+    },
+    {
+      title: t("serviceSolution.youngAmbitious.title"),
+      description: t("serviceSolution.youngAmbitious.desc"),
+      image: s1,
+    },
+    {
+      title: t("serviceSolution.costEffective.title"),
+      description: t("serviceSolution.costEffective.desc"),
+      image: s1,
+    },
+  ];
 
   return (
     <Box
@@ -47,7 +49,7 @@ const WhyChooseUs = () => {
         textAlign: 'center',
       }}
     >
-      <CustumTitle title="Reasons to consider AMT for your solutions services" />
+      <CustumTitle title={t("serviceSolution.title")} />
       {/* <Typography variant="h6" sx={{ fontWeight: 'bold', mb: 6 }}>
          <strong style={{ color: '#000' }}>AMT</strong> 
       </Typography> */}

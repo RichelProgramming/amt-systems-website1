@@ -6,6 +6,7 @@ import VisibilityIcon from "@mui/icons-material/Visibility";
 import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 import SchoolIcon from "@mui/icons-material/School";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import {useTranslation} from "react-i18next";
 
 const gradientStyle = {
   background: "linear-gradient(90deg, rgb(102, 188, 70), rgb(65, 66, 141), red)",
@@ -16,41 +17,39 @@ const gradientStyle = {
 const sections = [
   {
     id: "identity",
-    title: "Our Identity",
+    titleKey: "ourVision.identity",
     icon: AutoAwesomeIcon,
-    content:
-      "AMT Systems Engineering SARL is more than a company; it is a response to a call for action. We are a Douala-based startup driven by a passion for technology and a determination to demystify the belief that Africa cannot produce high-tech solutions. We draw inspiration from the industrial leaps made by nations like India and China, and we believe economic development is more than simply 'buy and sell.'",
+    contentKey: "ourVision.identityDesc",
   },
   {
     id: "vision",
-    title: "Our Vision",
+    titleKey: "ourVision.vision",
     icon: VisibilityIcon,
-    content:
-      "We envision a better economic viability for Africa. We see a future where successful partnerships define the industrial landscape, driven by local solutions tailored for local needs. Central to this vision is the support of education and youth entrepreneurial development, serving as the base for future growth. We strive to be the 'Best in Class' for Systems Engineering in the region.",
+    contentKey: "ourVision.visionDesc",
   },
   {
     id: "mission",
-    title: "Our Mission",
+    titleKey: "ourVision.mission",
     icon: LocalFireDepartmentIcon,
     // Organisation des piliers en sous-grille pour une meilleure occupation horizontale
     pillars: [
-      { label: "Develop Local Solutions", desc: "We engineer technologies specifically adapted to the African context." },
-      { label: "System Integration", desc: "We do not just sell parts; we connect customers into cohesive systems with their equipment." },
-      { label: "Advisory & Support", desc: "We advise our customers to help them grow and provide rigorous maintenance for longevity." },
-      { label: "Promote Entrepreneurship", desc: "We actively support youth to build the next generation of engineers and leaders." },
+      { labelKey: "ourVision.developLocal", descKey: "ourVision.developLocalDesc" },
+      { labelKey: "ourVision.systemIntegration", descKey: "ourVision.systemIntegrationDesc" },
+      { labelKey: "ourVision.advisory", descKey: "ourVision.advisoryDesc" },
+      { labelKey: "ourVision.promoteEntrepreneurship", descKey: "ourVision.promoteEntrepreneurshipDesc" },
     ],
   },
   {
     id: "philosophy",
-    title: "Corporate Philosophy",
+    titleKey: "ourVision.philosophy",
     icon: SchoolIcon,
-    content:
-      "We promote sustainable, partnership-driven development: fostering local capability through education, systems thinking, and long-term maintenance. Our approach favors durable value creation over short-term transactions.",
+    contentKey: "ourVision.sustainable",
   },
 ];
 
 function VisionCard({ section, index }) {
   const Icon = section.icon;
+   const { t } = useTranslation();
   
   return (
     <motion.div
@@ -115,13 +114,13 @@ function VisionCard({ section, index }) {
               lineHeight: 1.2,
             }}
           >
-            {section.title}
+            {t(section.titleKey)}
           </Typography>
         </Box>
 
         {/* Partie Droite : Contenu textuel qui profite de toute la largeur restante */}
         <Box sx={{ flexGrow: 1, width: "100%" }}>
-          {section.content && (
+          {section.contentKey && (
             <Typography
               sx={{
                 color: "#33415c",
@@ -131,7 +130,7 @@ function VisionCard({ section, index }) {
                 textAlign: "justify", // Aligne proprement le texte sur les côtés
               }}
             >
-              {section.content}
+              {t(section.contentKey)}
             </Typography>
           )}
 
@@ -145,15 +144,15 @@ function VisionCard({ section, index }) {
               }}
             >
               {section.pillars.map((pillar) => (
-                <Box key={pillar.label} sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
+                <Box key={pillar.labelKey} sx={{ display: "flex", gap: 2, alignItems: "flex-start" }}>
                   <CheckCircleIcon sx={{ color: "#5263ff", fontSize: 22, flexShrink: 0, mt: 0.3 }} />
                   <Box>
-                    <Typography sx={{ fontWeight: 700, color: "#0A1633", fontSize: "1rem", mb: 0.5 }}>
-                      {pillar.label}
-                    </Typography>
-                    <Typography sx={{ color: "#55627c", fontSize: "0.95rem", lineHeight: 1.5 }}>
-                      {pillar.desc}
-                    </Typography>
+                                <Typography sx={{ fontWeight: 700, color: "#0A1633", fontSize: "1rem", mb: 0.5 }}>
+                        {t(pillar.labelKey)}
+                      </Typography>
+                      <Typography sx={{ color: "#55627c", fontSize: "0.95rem", lineHeight: 1.5 }}>
+                        {t(pillar.descKey)}
+                      </Typography>
                   </Box>
                 </Box>
               ))}
@@ -166,6 +165,8 @@ function VisionCard({ section, index }) {
 }
 
 const OurVision = () => {
+  const { t } = useTranslation();
+
   return (
     <Box
       component={motion.section}
@@ -198,7 +199,7 @@ const OurVision = () => {
             ...gradientStyle,
           }}
         >
-          Vision, Mission, and Corporate Philosophy
+          {t("ourVision.pageTitle")}
         </Typography>
 
         <Box sx={{ width: 100, height: 5, background: "linear-gradient(90deg, #5263ff 0%, #1d284f 100%)", mx: "auto", mb: 8, borderRadius: 4 }} />

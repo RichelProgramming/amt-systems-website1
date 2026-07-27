@@ -4,12 +4,15 @@ import {
   InputAdornment, FormControl, Select, FormHelperText, Typography, Divider
 } from "@mui/material";
 import { Person, Email as EmailIcon, Phone, Business, Chat } from "@mui/icons-material";
-import emailjs from "emailjs-com";
+import emailjs from "@emailjs/browser";
 import { useTranslation } from "react-i18next";
 
-const SERVICE_ID = "service_0z7kgsq";
-const TEMPLATE_ID = "template_qnh3yys";
-const PUBLIC_KEY  = "8tNSmYir6Fu3QGzng";
+// const SERVICE_ID = "service_0z7kgsq";
+// const TEMPLATE_ID = "template_qnh3yys";
+// const PUBLIC_KEY  = "8tNSmYir6Fu3QGzng";
+const SERVICE_ID = process.env.REACT_APP_EMAILJS_SERVICE_ID;
+const TEMPLATE_ID = process.env.REACT_APP_EMAILJS_TEMPLATE_ID;
+const PUBLIC_KEY = process.env.REACT_APP_EMAILJS_PUBLIC_KEY;
 
 export default function ContactPage() {
   
@@ -39,14 +42,14 @@ export default function ContactPage() {
 
   const errors = useMemo(() => {
     const e = {};
-    if (!formData.from_name.trim()) e.from_name = "Required";
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) e.from_email = "Invalid email";
+    if (!formData.from_name.trim()) e.from_name = t("formValidation.required");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.from_email)) e.from_email = t("formValidation.invalidEmail");
     const digits = formData.phone.replace(/\D/g, "");
-    if (!digits || digits.length < 7) e.phone = "Enter a valid phone";
-    if (!formData.contact_method) e.contact_method = "Choose one";
-    if (!formData.message.trim()) e.message = "Required";
+    if (!digits || digits.length < 7) e.phone = t("formValidation.validPhone");
+    if (!formData.contact_method) e.contact_method = t("formValidation.chooseOne");
+    if (!formData.message.trim()) e.message = t("formValidation.required");
     return e;
-  }, [formData]);
+  }, [formData, t]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -113,6 +116,12 @@ export default function ContactPage() {
   const show = (field) => showErrors && !!errors[field];
   const help = (field) => (show(field) ? errors[field] : " ");
 
+  const contactMethodLabels = {
+    email: t("contactForm.contactMethodEmail"),
+    phone: t("contactForm.contactMethodPhone"),
+    whatsapp: t("contactForm.contactMethodWhatsapp"),
+  };
+
   return (
     <Box display="flex" flexDirection={{ xs: "column", md: "row" }} justifyContent="center" alignItems="center" gap={4} p={2}>
       {/* Map Section */}
@@ -137,10 +146,10 @@ export default function ContactPage() {
         sx={{ width: { xs: "100%", md: "40%" }, p: 3, borderRadius: 3, bgcolor: "background.paper" }}
       >
         <Typography variant="h6" sx={{ mb: 1, color: "#333366", fontWeight: 700 }}>
-          Contact us
+          {t("contactForm.title")}
         </Typography>
         <Typography variant="body2" sx={{ mb: 2, opacity: 0.8 }}>
-          We‘ll get back to you as soon as possible.
+          {t("contactForm.subtitle")}
         </Typography>
 
         <TextField
@@ -149,7 +158,7 @@ export default function ContactPage() {
           name="from_name"
           value={formData.from_name}
           onChange={handleChange}
-          placeholder="Your Name"
+          placeholder={t("contactForm.yourName")}
           margin="normal"
           variant="outlined"
           required
@@ -192,7 +201,7 @@ export default function ContactPage() {
           name="phone"
           value={formData.phone}
           onChange={handleChange}
-          placeholder="Phone number (incl. country code)"
+          placeholder={t("contactForm.phone")}
           margin="normal"
           variant="outlined"
           required
@@ -238,15 +247,17 @@ export default function ContactPage() {
             value={formData.contact_method}
             onChange={handleChange}
             displayEmpty
-            renderValue={(val) => (val ? val : "Preferred contact method")}
+            renderValue={(val) =>
+              val ? contactMethodLabels[val] ?? val : t("contactForm.contactMethodPlaceholder")
+            }
             sx={{ ".MuiSelect-select": { display: "flex", alignItems: "center", gap: 1 } }}
           >
             <MenuItem value="">
-              <em>Preferred contact method</em>
+              <em>{t("contactForm.contactMethodPlaceholder")}</em>
             </MenuItem>
-            <MenuItem value="email">Email</MenuItem>
-            <MenuItem value="phone">Phone</MenuItem>
-            <MenuItem value="whatsapp">WhatsApp</MenuItem>
+            <MenuItem value="email">{t("contactForm.contactMethodEmail")}</MenuItem>
+            <MenuItem value="phone">{t("contactForm.contactMethodPhone")}</MenuItem>
+            <MenuItem value="whatsapp">{t("contactForm.contactMethodWhatsapp")}</MenuItem>
           </Select>
           <FormHelperText>{help("contact_method")}</FormHelperText>
         </FormControl>
@@ -257,7 +268,7 @@ export default function ContactPage() {
           name="message"
           value={formData.message}
           onChange={handleChange}
-          placeholder="How can we help?"
+          placeholder={t("contactForm.messagePlaceholder")}
           margin="normal"
           variant="outlined"
           multiline
@@ -292,7 +303,7 @@ export default function ContactPage() {
             "&:hover": { backgroundColor: "#2b2b66" },
           }}
         >
-          {loading ? "Sending..." : "Send message"}
+          {loading ? t("contactForm.sendingButton") : t("contactForm.sendButton")}
         </Button>
       </Paper>
 

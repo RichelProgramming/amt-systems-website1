@@ -3,7 +3,8 @@ import React from 'react';
 import { Box, Button, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { motion } from "framer-motion";
 import CustumTextChange from './CustumTextChange';
-import {useNavigate} from "react-router-dom"
+import {useNavigate} from "react-router-dom";
+import logoamt from "../assets/logonew.svg";
 
 const HeroSection = ({homeData}) => {
   const theme = useTheme();
@@ -62,23 +63,69 @@ const HeroSection = ({homeData}) => {
         }
       </motion.div>
 
-      {!isMobile && (
-       <motion.div
-        initial={{ opacity: 0, x: 100 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1.5 }}
-        viewport={{ once: true }}
-      >
-        <Box
-          sx={{
-            width: "auto",
+      {/* {!isMobile && ( */}
+      <motion.div
+  initial={{ opacity: 0, x: 100 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1.5 }}
+  viewport={{ once: true }}
+>
+  {/* Ce Box s'adapte à la taille naturelle du globe grâce à display: inline-flex */}
+  <Box
+    sx={{
+      position: "relative",
+      display: "inline-flex", 
+      justifyContent: "center",
+      alignItems: "center",
+    }}
+  >
+    {/* 1. Le Globe : Strictement identique à votre code de départ */}
+    <img src={globe} className="App-logo" alt="logo" />
+
+    {/* 2. Le conteneur invisible de l'orbite */}
+    <Box
+      sx={{
+        position: "absolute",
+        width: "100%",
+        height: "100%",
+        top: 0,
+        left: 0,
+        // Élargit le cercle invisible pour que le logo ne touche pas le globe
+        transform: "scale(1)", // Un peu plus grand pour l'espace des 4 logos
+        animation: "spin 9s linear infinite",
+        "@keyframes spin": {
+          "0%": { transform: "scale(1) rotate(0deg)" },
+          "100%": { transform: "scale(1) rotate(360deg)" },
+        },
+      }}
+    >
+      {/* --- Les 4 instances du Logo --- */}
+      {/* Pour garantir une visibilité optimale, nous ajoutons un zIndex élevé et une ombre */}
+      {[
+        // Positionnement cardinal (Haut, Droite, Bas, Gauche)
+        { top: "-30px", left: "50%", transform: "translateX(-50%)" },
+        
+        { bottom: "-30px", left: "50%", transform: "translateX(-50%)" },
+       
+      ].map((position, index) => (
+        <img
+          key={index}
+          src={logoamt} // <--- Remplacez par votre variable de logo
+          alt={`Logo du site instance ${index + 1}`}
+          style={{
+            position: "absolute",
+            width: "auto", // Taille de vos logos qui tournent
             height: "auto",
+            objectFit: "contain",
+            borderRadius: "50%", // Optionnel : arrondir si le logo n'est pas rond
+            zIndex:4, // S'assure qu'ils sont par-dessus le globe
+            ...position, // Applique les coordonnées uniques
           }}
-        >
-         <img src={globe} className="App-logo" alt="logo" />
-       </Box>
-      </motion.div>
-      )}
+        />
+      ))}
+    </Box>
+  </Box>
+</motion.div>
     </Box>
   );
 };

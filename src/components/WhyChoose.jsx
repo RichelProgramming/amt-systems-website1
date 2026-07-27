@@ -2,15 +2,16 @@ import { Typography, Grid } from '@mui/material';
 import React from 'react';
 import { Check } from 'lucide-react';
 import HexagonalDesign from './Hexagone';
-import { i } from 'motion/react-client';
+import { useTranslation } from 'react-i18next';
+import { motion } from "framer-motion";
 
 const AMTSystemsDesign = () => {
+  const { t } = useTranslation();
 
   return (
     <div>
       <p className='title-text-color'> 
-        Why to choose AMT  Systems-Engineering <br/>
-        SARL as your business partner
+        {t("whyChoose.title")}
       </p>
     
     <div style={{
@@ -46,19 +47,19 @@ const AMTSystemsDesign = () => {
         }}>
           <Grid item xs={12} md={6}>
           <Typography variant="body1" paragraph>
-            Delivering products is important, but excellence means more than just fulfilling the explicit needs of our customers.
+            {t("whyChoose.excellence")}
           </Typography>
           <Typography variant="body1" paragraph>
-            Creating <strong>sustainable</strong> value requests more than technical resolution of the challenges.
+            {t("whyChoose.sustainable")}
           </Typography>
           <Typography variant="body1" paragraph>
-            To achieve this, AMT systems–Engineering SARL remains attentive to the real challenges the customer face in their ecosystem.
+            {t("whyChoose.attentive")}
           </Typography>
           <Typography variant="body1" paragraph>
-            This customer-centric and user-focused approach prioritizes exceptional customer service by delivering tailored solutions that meet all stakeholders' needs.
+            {t("whyChoose.approach")}
           </Typography>
           <Typography variant="body1">
-            This our DNA.
+            {t("whyChoose.dna")}
           </Typography>
         </Grid>
 

@@ -1,0 +1,84 @@
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\AboutSection.js
+  text AMT Systems Engineering
+  text ABOUT US
+  text AMT Systems engineering
+  text innovation
+  text system integration
+  text impact
+  text software, hardware, AI
+  text mechanics
+  text to create integrated solutions.
+  text More About Us
+  attr alt="Project"
+  attr alt="Project"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\AvisHome.js
+  text (prev - 1 + reviews.length) % reviews.length);
+
+    return (
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\FloatingActionButton.js
+  attr aria-label="add"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\Footer.jsx
+  text AMT System Engineering
+  text AMT Team
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\Hexagone.js
+  text );
+
+  const mobileHandshakeIcon = (
+  text Value contribution
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\HomeCard.js
+  attr alt="logo"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\LanguageSwitcher.jsx
+  text EN
+  text FR
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\NavBar.jsx
+  attr aria-label="Toggle menu"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\OurServices.jsx
+  text AMT Systems Engineering SARL combines hardware engineering, software development,
+          data services and procurement support to deliver practical solutions from prototype to
+          production.
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\RatingStars.jsx
+  attr aria-label="Rating"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\ServiceSolution.js
+  text AMT
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\ServicesGrid.jsx
+  text We offer  IT , Data and Procurement Services. 
+          We implement Systems-Engineering approaches  and deliver smart  Prototypes  
+          We continously  strive for excellence in project management and stay focused on our customer statisfaction
+  attr title="AMT African Machinery Technologies Systems engineering SARL  is a company for  focusing on real results"
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\animatinG.js
+  text AMT Systems-Engineering Services
+  text A Unique Cross-Domain Ecosystem
+  text What sets AMT Systems Engineering SARL apart is our ability to break down silos. 
+          Traditional firms often specialize in just one area. We offer a unique selling point: 
+          a strong cross-connection between Hardware Engineering, Software Engineering, and Mechanical Engineering. 
+          By integrating Artificial Intelligence (AI) into this ecosystem, we link and enhance all these domains, 
+          delivering smart, innovative solutions from a single source.
+  text Engineering Services
+  text There is no smart technology without the incorporation of IT-solutions. In today's rapidly advancing 
+            technological landscape, integrating Information Technology (IT) is crucial for creating smart and efficient solutions. 
+            Our IT solutions enable you to access, analyze, and interpret vast amounts of data, optimizing operations and strategies.
+  text Procurement and Supply Services
+  text As companies and institutions increasingly focus on their core competencies, the demand for outsourcing 
+            secondary activities like spare part procurement continues to rise. AMT Systems-Engineering SARL, a global 
+            player with associates worldwide, offers these services to its customers. Connecting our business partners 
+            with potential suppliers or managing supplies on their behalf is a key aspect of our operations.
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\AboutUs\AboutUs.js
+  text AMT Systems-Engineering SARL
+
+FILE: e:\Users\LENOVO\Desktop\projet\amt-systems-website\src\components\AboutUs\HistorySection.jsx
+  text Historique et présentation
+  text Fondation et objectif
+  text 

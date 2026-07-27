@@ -10,27 +10,29 @@ import {
   useMediaQuery
 } from '@mui/material';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import s1 from '../assets/service.png'; // Assurez-vous que le chemin est correct
 
 const projects = [
   {
-    title: "eCommerce Website",
-    type: "Web Project",
+    title: "ecommerce",
+    type: "webProject",
     image: s1, // Remplace par l'image dans /public
   },
   {
-    title: "Banking System",
-    type: "Mobile App",
+    title: "banking",
+    type: "mobileApp",
     image: s1,
   },
   {
-    title: "Payment Gateway",
-    type: "Software",
+    title: "paymentGateway",
+    type: "software",
     image: s1,
   },
 ];
 
 const ProjectsSection = () => {
+  const { t } = useTranslation();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
@@ -51,16 +53,16 @@ const ProjectsSection = () => {
         viewport={{ once: true }}
       >
         <p className='title-text-white' style={{ marginBottom: isMobile ? 20 : 40 }}>
-          PROJETS RECENTS
+          {t("recentProjects.title")}
         </p>
 
         <Typography variant="h5" fontWeight="bold" sx={{ mb: 2 }}>
-          A skilled team of experts with a focus on transforming local needs into smart solutions
+          {t("recentProjects.desc")}
         </Typography>
 
         <Typography variant="body2" sx={{ mb: 5, maxWidth: 700, mx: 'auto', color: '#ccc' }}>
           From brand development, website application development, eCommerce solutions,
-          Content Management Systems (CMS), Search Engine Optimization (SEO) and digital marketing.
+          {" " + t("recentProjects.cmsDesc")}
         </Typography>
       </motion.div>
 
@@ -83,10 +85,10 @@ const ProjectsSection = () => {
                 />
                 <CardContent sx={{ textAlign: 'center' }}>
                   <Typography variant="h6" fontWeight="bold">
-                    {project.title}
+                    {t(`recentProjects.${project.title}`)}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    {project.type}
+                    {t(`recentProjects.${project.type}`)}
                   </Typography>
                 </CardContent>
               </Card>
