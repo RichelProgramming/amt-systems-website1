@@ -12,13 +12,7 @@ const StarGrid = () => {
 
   const services1 = [
     {
-      icon: <DeveloperModeIcon style={{ fontSize:'50px', color:"#0A1633" }} />,
-      title: t("aboutUs.cards.deliver_title"),
-      description: t("aboutUs.cards.deliver_desc"),
-    },
-    {
-      icon: <HeadsetMicIcon style={{ fontSize:'50px', color:"#0A1633" }} />,
-      title: t("aboutUs.cards.innovate_title"),
+      icon: <DeveloperModeIcon style={{ fontSize:'50px', color:"#0A1633" }} />, 
       description: t("aboutUs.cards.innovate_desc"),
     },
   ];

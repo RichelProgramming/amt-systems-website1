@@ -47,16 +47,16 @@ export const getFooterData = (t) => ({
     },
   ],
   contact: {
-    city: "Douala",
+    city: "Douala",  
     country: "Cameroon",
     phone: "+237 6 98 98 74 85",
     email: "amtsystemsengineering@gmail.com",
   },
   socials: [
-    { label: t("footer.socials.facebook"), href: "#" },
-    { label: t("footer.socials.instagram"), href: "#" },
-    { label: t("footer.socials.linkedin"), href: "#" },
-    { label: t("footer.socials.twitter"), href: "#" },
+    { icon: "facebook", label: t("footer.socials.facebook"), href: "https://www.facebook.com/AMTSystemsEngineering" },
+    { icon: "instagram", label: t("footer.socials.instagram"), href: "https://www.instagram.com/amtsys/p/DaX2KzsjYMg/" },
+    { icon: "linkedin", label: t("footer.socials.linkedin"), href: "https://www.linkedin.com/in/amt-systems-engineering-sarl-581b3541b/" },
+    { icon: "twitter", label: t("footer.socials.twitter"), href: "https://twitter.com/AMTSystemsEng" },
   ],
 });
 

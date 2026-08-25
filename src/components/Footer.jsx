@@ -10,7 +10,7 @@ const iconFromName = (nameOrLabel) => {
   if (key.includes("linkedin")) return Linkedin;
   if (key.includes("twitter") || key.includes("x")) return Twitter;
   return null;
-};
+}; 
 
 export default function Footer({
   logo = { src: logoamt, alt: "AMT Systems Engineering" },
@@ -22,7 +22,12 @@ export default function Footer({
     phone: "+237 6 81 24 98 14",
     email: "contact@amtsyseng.com",
   },
-  socials = [],
+  socials = [
+    { icon: "facebook", href: "https://www.facebook.com/AMTSystemsEngineering" },
+    { icon: "instagram", href: "https://www.instagram.com/amtsys/p/DaX2KzsjYMg/" },
+    { icon: "linkedin", href: "https://www.linkedin.com/in/amt-systems-engineering-sarl-581b3541b/" },
+    { icon: "twitter", href: "https://twitter.com/AMTSystemsEng" },
+  ],
   year = new Date().getFullYear(),
 }) {
   const { t } = useTranslation();
@@ -43,7 +48,7 @@ export default function Footer({
               return (
                 <a
                   key={i}
-                  href={s.href || "#"}
+                  href={s.href }
                   className="footer__social"
                   aria-label={s.icon || s.label || "social"}
                   target="_blank"
