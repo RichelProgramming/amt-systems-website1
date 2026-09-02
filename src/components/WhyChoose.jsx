@@ -19,7 +19,7 @@ const AMTSystemsDesign = () => {
       padding: '20px',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
     }}>
-      <div style={{
+      <div className="why-choose-content" style={{
         maxWidth: '1200px',
         margin: '0 auto',
         display: 'flex',
@@ -28,7 +28,7 @@ const AMTSystemsDesign = () => {
         flexWrap: 'wrap',
       }}>
         {/* Section illustration isométrique */}
-        <div style={{
+        <div className="why-choose-illustration" style={{
           flex: '1',
           minWidth: '320px',
           position: 'relative',
@@ -39,7 +39,7 @@ const AMTSystemsDesign = () => {
         </div>
 
         {/* Section contenu */}
-        <div style={{
+        <div className="why-choose-text" style={{
           flex: '1',
           minWidth: '400px',
           maxWidth: '600px',
@@ -74,8 +74,15 @@ const AMTSystemsDesign = () => {
             flex-direction: column;
           }
           
-          div[style*="minWidth: 400px"] {
-            min-width: 300px !important;
+          .why-choose-illustration,
+          .why-choose-text {
+            min-width: 0 !important;
+            width: 100%;
+            max-width: 100%;
+          }
+
+          .why-choose-illustration {
+            padding-right: 0 !important;
           }
           
           div[style*="grid-template-columns"] {
